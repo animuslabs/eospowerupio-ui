@@ -1,0 +1,16 @@
+{
+  "extends": "@quasar/app/tsconfig-preset",
+  "target": "es6",
+  "typeAcquisition": {
+    "enable": true
+  },
+  "compilerOptions": {
+    "baseUrl": ".",
+    "noImplicitAny": false,
+    "allowJs": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "suppressExcessPropertyErrors": true,
+    "strictNullChecks": false
+  }
+}
