@@ -3,8 +3,9 @@
     q-header.bg-grey-9
       q-toolbar
         q-toolbar-title
-          q-img(src="/public/icons/favicon-128x128.png")
-          div EOS PowerUp
+          .row.items-center
+            q-img(src="/icons/favicon-128x128.png" width="20px").on-left
+            div EOS PowerUp
     q-page-container 
       router-view
   </q-layout>
