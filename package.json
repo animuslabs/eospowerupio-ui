@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "dev":"quasar dev",
-    "build":"quasuar build --modern"
+    "build":"quasar build --modern"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
