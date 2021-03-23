@@ -6,11 +6,12 @@
   "author": "boid-com",
   "private": true,
   "scripts": {
-    "dev":"quasar dev",
-    "build":"quasar build --modern"
+    "dev": "quasar dev",
+    "build": "quasar build --modern"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "quasar": "^1.0.0"
   },
