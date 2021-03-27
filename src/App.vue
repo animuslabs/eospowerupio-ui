@@ -7,7 +7,7 @@
 // import anchor from "./lib/anchor";
 import {state} from "./state/global"
 import Vue from 'vue'
-ethereum.autoRefreshOnNetworkChange = false
+// ethereum.autoRefreshOnNetworkChange = false
 
 
 // const anchor = require("./lib/anchor")
