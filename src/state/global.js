@@ -38,9 +38,7 @@ const state = {
 
         },
         async logout() {
-          const sessions = await link.listSessions('eospowerupio')
-          console.log(sessions);
-          link.removeSession('eospowerupio', sessions[0].auth, sessions[0].chainId)
+          await link.clearSessions('eospowerupio')
         }, async doActions(actions) {
           await state.auth.anchor.transact({ actions })
             .catch(err => {
