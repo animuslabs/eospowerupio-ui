@@ -25,6 +25,9 @@
       "boot/*": [
         "src/boot/*"
       ],
+      "lib/*": [
+        "src/lib/*"
+      ],
       "vue$": [
         "node_modules/vue/dist/vue.esm.js"
       ]

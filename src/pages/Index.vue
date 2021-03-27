@@ -1,5 +1,5 @@
 <template lang="pug">
-q-page(padding)
+div
   div
     .row.justify-center
       h5 PowerUp Your Account
@@ -13,7 +13,7 @@ q-page(padding)
           input-style="font-size:30px; text-align:center;"
         ) 
         .row.justify-center.q-ma-md
-          q-btn(size="md", color="grey", type="submit" :loading="loadingPowerup")
+          q-btn(size="lg", color="cyan" outline type="submit" :loading="loadingPowerup")
             q-icon.powerupbtn(name="bolt")
             div PowerUp
     .row.justify-center.q-ma-md(style="width: 100%")
@@ -21,38 +21,23 @@ q-page(padding)
         ul.text-grey-9 
           li Accounts can claim one free PowerUp every 12 hours.
           li Learn more about #[a(href="https://eos.io/eos-public-blockchain/powerup-model/") PowerUp]
-    .row.justify-center
-      h6.no-margin.text-weight-light.text-grey-9 More Features...
-    .row.justify-center
-      small Leave your e-mail to be notified when new features are announced.
-    .row.justify-center
-      q-form(@submit="submitEmail" v-if="!collectedEmail")
-        q-input(
-          v-model="useremail",
-          type="text",
-          label="email",
-          style="width: 200px",
-          input-style="text-align:center;"
-        )
-        .row.justify-center
-          q-btn.q-ma-sm(:loading="loadingEmail" type="submit", flat, label="submit", clearable :disable="collectedEmail")
-    .row.q-pa-sm.q-ma-lg.justify-center(v-if="collectedEmail").bg-yellow
-      div email registered
+          li Want more power? Register accounts to receive automatic PowerUps (and RAM) based on usage. Check out #[a(href="/auto") Auto Powerup]
+
       
     .q-pa-lg
-    .row.justify-center.q-ma-lg.absolute-bottom
+    .row.justify-center.q-ma-lg.absolute-bottom(style="bottom:40px;")
       q-btn(
-        size="sm",
+        size="md",
         flat,
-        color="grey-8",
+        color="cyan-8",
         type="a",
         href="https://twitter.com/eospowerup",
         target="_blank"
       ) twitter
       q-btn(
-        size="sm",
+        size="md",
         flat,
-        color="grey-8",
+        color="cyan-8",
         type="a",
         href="https://t.me/eosresourcemodel",
         target="_blank"
@@ -101,6 +86,7 @@ export default {
   name: "PageIndex",
   data() {
     return {
+      tab:'free',
       accountInput: " ",
       useremail: "",
       collectedEmail:false,
@@ -109,13 +95,7 @@ export default {
     };
   },
   methods: {
-    async submitEmail() {
-      console.log("submit email");
-      this.loadingEmail = true;
-      await ax.post('https://api.eospowerup.io/registerEmail/'+ this.useremail)
-      this.collectedEmail = true
-      this.loadingEmail = false;
-    },
+
     async freePowerup() {
       this.loadingPowerup = true
       let message
@@ -140,5 +120,8 @@ export default {
       }
     },
   },
+  watch:{
+
+  }
 };
 </script>

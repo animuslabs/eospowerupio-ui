@@ -1,23 +1,29 @@
 <template lang="pug">
-  .q-app
-    router-view
-    //- q-btn(color='primary', icon='check', label='OK', @click='onClick') 
-
-  </div>
+.q-app
+  router-view
+</div>
 </template>
 <script>
+// import anchor from "./lib/anchor";
+import {state} from "./state/global"
+import Vue from 'vue'
+ethereum.autoRefreshOnNetworkChange = false
+
+
+// const anchor = require("./lib/anchor")
 export default {
-  name: 'App',
-  data(){
+  name: "App",
+  data() {
     return {
-      tab:"mails",
-      hello:"whore"
-    }
+      global: state.global,
+      auth: state.auth
+    };
   },
-  methods:{
-    neato(){
-      console.log(this.hello)
-    }
-  }
-}
+  methods: {
+    mounted() {
+      // this.auth.anchor.do.init()
+    },
+    neato() {},
+  },
+};
 </script>

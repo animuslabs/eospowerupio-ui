@@ -1,0 +1,12 @@
+<svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
+ <title>Asset 1</title>
+
+ <g>
+  <title>Layer 1</title>
+  <g id="Layer_2">
+   <g id="Layer_1-2">
+    <path fill="#ffffff" id="svg_1" d="m25,0l-11.7,16.1l-4.9,23.8l16.6,10.1l16.6,-10.1l-5,-23.9l-11.6,-16zm-13.9,38.8l3.7,-18.1l8.4,25.5l-12.1,-7.4zm4.9,-22.2l9,-12.4l9,12.4l-9,27.2l-9,-27.2zm10.7,29.6l8.4,-25.5l3.7,18.1l-12.1,7.4z"/>
+   </g>
+  </g>
+ </g>
+</svg>

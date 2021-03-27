@@ -1,0 +1,148 @@
+<template lang="pug">
+div
+  q-card.q-ma-md.q-pa-md
+    h6.no-margin.text-weight-light.text-grey-9 PowerUp Balance
+    small Deposit EOS to pre-purchase the auto-powerup service. Automatic PowerUp costs will be deducted from your balance. (Powerup cost + 1% fee)
+    .row.q-ma-md
+      .col.on-left
+        small Remaining Balance
+        q-input(
+          filled,
+          readonly,
+          v-model="depositedBal",
+          suffix="EOS",
+          type="number"
+        )
+      .col.on-right
+        small Pre-Pay EOS
+        q-input(
+          filled,
+          v-model="depositQuantity",
+          suffix="EOS",
+          type="number"
+        )
+        q-btn.full-width(
+          label="Add funds", 
+          flat,
+          color="teal",
+          :disable="!depositValid",
+          icon="add",
+          @click="addFunds()"
+        )
+      .col-auto
+        q-btn.full-width(
+          label="max",
+          flat,
+          color="teal",
+          :disable="!depositValid",
+          @click="setMaxDeposit()",
+          style="margin-top: 22px; height: 55px"
+        )
+    //- div {{ auth.userData }}
+    //- div {{auth.anchor.auth.toJSON()}}
+</template>
+
+<style>
+ul ul {
+  padding-left: 15px;
+}
+.powerupbtn {
+  background: linear-gradient(
+    to right,
+    rgb(255, 217, 0) 20%,
+    rgb(255, 234, 0) 40%,
+    rgb(255, 225, 0) 60%,
+    rgb(242, 255, 0) 80%
+  );
+  background-size: 200% auto;
+
+  color: #000;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: powerupbtn 1s linear infinite;
+}
+
+@keyframes powerupbtn {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+</style>
+
+<script>
+import { state } from "../state/global";
+
+import { Dialog } from "quasar";
+import queries from "../lib/queries";
+import ax from "axios";
+export default {
+  name: "PageIndex",
+  data() {
+    return {
+      auth: state.auth,
+      // userData: state.auth.userData,
+      depositedBal: 0,
+      accountInput: " ",
+      useremail: "",
+      collectedEmail: false,
+      loadingEmail: false,
+      loadingPowerup: false,
+      depositQuantity: 0,
+      interval: null,
+    };
+  },
+  mounted() {
+    this.getDeposited();
+    this.interval = setInterval(() => {
+      this.getDeposited();
+    }, 5000);
+  },
+  destroyed() {
+    clearInterval(this.interval);
+  },
+  methods: {
+    async setMaxDeposit() {
+      const result = await queries.getBalance(this.auth.userData.actor);
+      console.log(result);
+      this.depositQuantity = Math.min(100, parseFloat(result));
+    },
+    async addFunds() {
+      console.log(Number(this.depositQuantity).toFixed(4));
+      const action = {
+        account: "eosio.token",
+        name: "transfer",
+        data: {
+          from: this.auth.userData.actor,
+          to: "eospowerupio",
+          memo: "deposit",
+          quantity: Number(this.depositQuantity).toFixed(4) + " EOS",
+        },
+      };
+      await this.auth.doActions([action])
+      // await this.auth.anchor.transact({action});
+    },
+    async getDeposited() {
+      const result = await queries.getDeposited(this.auth.userData.actor);
+      if (result) this.depositedBal = parseFloat(result);
+    },
+  },
+  computed: {
+    depositValid() {
+      return true;
+    },
+  },
+  watch: {
+    "auth.userData.actor"(val) {
+      console.log(val);
+      this.getDeposited();
+    },
+  },
+};
+</script>
