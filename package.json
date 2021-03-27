@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "dev": "quasar dev",
-    "build": "quasar build --modern"
+    "build": "quasar build --modern && cp _redirects dist/spa"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
@@ -23,7 +23,8 @@
   "devDependencies": {
     "@quasar/app": "^2.0.0",
     "pug": "^3.0.2",
-    "pug-plain-loader": "^1.1.0"
+    "pug-plain-loader": "^1.1.0",
+    "strip-ansi": "=3.0.1"
   },
   "browserslist": [
     "last 10 Chrome versions",
