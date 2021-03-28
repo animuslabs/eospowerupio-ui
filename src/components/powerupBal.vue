@@ -20,7 +20,7 @@ div
           v-model="depositQuantity",
           suffix="EOS",
           type="number"
-        )
+        ).shadow-1
         q-btn.full-width(
           label="Add funds", 
           flat,
