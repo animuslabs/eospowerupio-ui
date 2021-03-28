@@ -1,6 +1,6 @@
 <template lang="pug">
 q-dialog(ref="dialog", @hide="onDialogHide")
-  q-card.q-dialog-plugin
+  q-card.q-dialog-plugin(style="overflow:auto;")
     .q-pa-md
       h6.no-margin.text-weight-light.text-grey-9 {{ config.title }}
       .row.q-pt-md
@@ -21,28 +21,28 @@ q-dialog(ref="dialog", @hide="onDialogHide")
 
         q-slider.q-mr-sm.q-ml-xm(v-model="quickSetting", :min="1", :max="3", markers, snap)
       .row.q-ma-sm.justify-center
-        .col.q-pl-xs
+        .col-sm-6.col-md-3.q-pr-md.q-pt-sm.q-pl-md
           small min CPU (ms)
             q-input(
               v-model="config.watch_data.min_cpu_ms",
               style="width: 80px",
               filled
             )
-        .col
+        .col-sm-6.col-md-3.q-pr-md.q-pt-sm.q-pl-md
           small PowerUp (ms)
             q-input(
               v-model="config.watch_data.powerup_quantity_ms",
               style="width: 80px",
               filled
             )
-        .col
+        .col-sm-6.col-md-3.q-pr-md.q-pt-sm.q-pl-md
           small min RAM (Kb)
             q-input(
               v-model="config.watch_data.min_kb_ram",
               style="width: 80px",
               filled
             )
-        .col
+        .col-sm-6.col-md-3.q-pr-md.q-pt-sm.q-pl-md
           small buy RAM (Kb)
             q-input(
               v-model="config.watch_data.buy_ram_quantity_kb",
