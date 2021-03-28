@@ -1,57 +1,67 @@
 <template lang="pug">
-q-dialog(ref="dialog", @hide="onDialogHide")
-  q-card.q-dialog-plugin(style="overflow:auto;")
+q-dialog(ref="dialog", @hide="onDialogHide" :maximized="$q.platform.is.mobile")
+  q-card.q-dialog-plugin(style="overflow:auto; width:90vw; min-width:300px;")
     .q-pa-md
       h6.no-margin.text-weight-light.text-grey-9 {{ config.title }}
-      .row.q-pt-md
-        small account name
-      .row
-        q-input(v-model="accountName" :readonly="setupData.freezeName")
-      .row.q-pt-md
-        small Quick Preset
-      .row.justify-center.q-mr-md.q-ml-md
-        .col 
-          small basic
-        .col-3
-        .col 
-          small power user
-        .col-3
-        .col 
-          small heavy duty
+      div
+        .row
+          .col-auto
+            .row.q-pt-md
+              small account name
+            .row
+              q-input(v-model="accountName" :readonly="setupData.freezeName")
+          
+        .row.q-pt-md
+          small Quick Preset 
+        .row.justify-center
+          .row.justify-center.full-width
+            .col.text-green-9.q-ma-xs.q-pa-sm.text-center(style="text-transform: uppercase;")
+              small.capitalize basic
+            q-separator(vertical inset color="grey-5" size="2px")
+            .col.text-orange-7.q-ma-xs.q-pa-sm.text-center(style="text-transform: uppercase;")
+              small power 
+            q-separator(vertical inset color="grey-5" size="2px")
+            .col.text-red.q-ma-xs.q-pa-sm.text-center(style="text-transform: uppercase;")
+              small advanced
+          .row.justify-center
+            .col(style="width:350px;")
+              q-slider( v-model="quickSetting", :min="1", :max="3", markers, snap :color="sliderColor")
+        .row
+          small Manual Config
+        .row.q-ma-sm.justify-center
 
-        q-slider.q-mr-sm.q-ml-xm(v-model="quickSetting", :min="1", :max="3", markers, snap)
-      .row.q-ma-sm.justify-center
-        .col-sm-6.col-md-3.q-pr-md.q-pt-sm.q-pl-md
-          small min CPU (ms)
-            q-input(
-              v-model="config.watch_data.min_cpu_ms",
-              style="width: 80px",
-              filled
-            )
-        .col-sm-6.col-md-3.q-pr-md.q-pt-sm.q-pl-md
-          small PowerUp (ms)
-            q-input(
-              v-model="config.watch_data.powerup_quantity_ms",
-              style="width: 80px",
-              filled
-            )
-        .col-sm-6.col-md-3.q-pr-md.q-pt-sm.q-pl-md
-          small min RAM (Kb)
-            q-input(
-              v-model="config.watch_data.min_kb_ram",
-              style="width: 80px",
-              filled
-            )
-        .col-sm-6.col-md-3.q-pr-md.q-pt-sm.q-pl-md
-          small buy RAM (Kb)
-            q-input(
-              v-model="config.watch_data.buy_ram_quantity_kb",
-              style="width: 80px",
-              filled
-            )
+          .col-sm-6.col-md-3.q-pr-md.q-pt-sm.q-pl-md
+            small min CPU (ms)
+              q-input(
+                v-model="config.watch_data.min_cpu_ms",
+                style="width: 80px",
+                filled
+              )
+          .col-sm-6.col-md-3.q-pr-md.q-pt-sm.q-pl-md
+            small PowerUp (ms)
+              q-input(
+                v-model="config.watch_data.powerup_quantity_ms",
+                style="width: 80px",
+                filled
+              )
+          .col-sm-6.col-md-3.q-pr-md.q-pt-sm.q-pl-md
+            small min RAM (Kb)
+              q-input(
+                v-model="config.watch_data.min_kb_ram",
+                style="width: 80px",
+                filled
+              )
+          .col-sm-6.col-md-3.q-pr-md.q-pt-sm.q-pl-md
+            small buy RAM (Kb)
+              q-input(
+                v-model="config.watch_data.buy_ram_quantity_kb",
+                style="width: 80px",
+                filled
+              )
     q-card-actions(align="right")
       q-btn(color="grey", label="Cancel", @click="onCancelClick", flat)
-      q-btn(color="cyan", label="Add", @click="registerDevice", outline)
+      q-btn(color="cyan", :label="actionLabelName", @click="registerDevice", outline)
+    div(style="height:200px;" v-if="$q.platform.is.mobile")
 </template>
 
 <script>
@@ -61,6 +71,7 @@ export default {
       config: Object.assign({}, this.setupData),
       rawAccountName: "",
       quickSetting: this.setupData.initialQuickSetting,
+      sliderColor:'cyan'
     };
   },
   props: ["setupData", "owner","auth","initialQuickSetting","freezeName"],
@@ -69,6 +80,11 @@ export default {
     this.accountName = this.config.watch_data.account
   },
   computed: {
+    actionLabelName(){
+      // @ts-ignore
+      if (this.setupData.freezeName) return 'edit'
+      else return 'add'
+    },
     accountName: {
       // @ts-ignore
       get(data) {
@@ -85,8 +101,10 @@ export default {
     },
   },
   watch: {
+
     quickSetting(val) {
       if (val == 1) {
+        this.sliderColor="green"
         // @ts-ignore
         this.config.watch_data = {
           min_cpu_ms: 5,
@@ -96,6 +114,8 @@ export default {
           account:this.accountName
         };
       } else if (val == 2) {
+        this.sliderColor="orange"
+
         // @ts-ignore
         this.config.watch_data = {
           min_cpu_ms: 20,
@@ -106,6 +126,7 @@ export default {
 
         };
       } else {
+        this.sliderColor="red"
         // @ts-ignore
         this.config.watch_data = {
           min_cpu_ms: 50,
