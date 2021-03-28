@@ -14,18 +14,19 @@ q-dialog(ref="dialog", @hide="onDialogHide" :maximized="$q.platform.is.mobile")
         .row.q-pt-md
           small Quick Preset 
         .row.justify-center
-          .row.justify-center.full-width
-            .col.text-green-9.q-ma-xs.q-pa-sm.text-center(style="text-transform: uppercase;")
-              small.capitalize basic
-            q-separator(vertical inset color="grey-5" size="2px")
-            .col.text-orange-7.q-ma-xs.q-pa-sm.text-center(style="text-transform: uppercase;")
-              small power 
-            q-separator(vertical inset color="grey-5" size="2px")
-            .col.text-red.q-ma-xs.q-pa-sm.text-center(style="text-transform: uppercase;")
-              small advanced
-          .row.justify-center
-            .col(style="width:350px;")
-              q-slider( v-model="quickSetting", :min="1", :max="3", markers, snap :color="sliderColor")
+          .row.justify-center(style="width:300px")
+            .row.justify-center.full-width
+              .col.text-green-9.q-ma-xs.q-pa-sm.text-center(style="text-transform: uppercase;")
+                small.capitalize basic
+              q-separator(vertical inset color="grey-5" size="2px")
+              .col.text-orange-7.q-ma-xs.q-pa-sm.text-center(style="text-transform: uppercase;")
+                small power 
+              q-separator(vertical inset color="grey-5" size="2px")
+              .col.text-red.q-ma-xs.q-pa-sm.text-center(style="text-transform: uppercase;")
+                small advanced
+            .row.justify-center
+              .col(style="width:200px;")
+                q-slider( v-model="quickSetting", :min="1", :max="3", markers, snap :color="sliderColor")
         .row
           small Manual Config
         .row.q-ma-sm.justify-center

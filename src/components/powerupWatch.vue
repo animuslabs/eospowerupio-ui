@@ -142,7 +142,7 @@ export default {
       const newAccountWindow = Dialog.create({
         setupData: {
           title: "Edit Watch Account",
-          initialQuickSetting:0,
+          initialQuickSetting:null,
           freezeName:true,
           watch_data
         },
