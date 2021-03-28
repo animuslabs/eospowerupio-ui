@@ -10,7 +10,7 @@ q-layout(padding)
       q-btn(
         stretch,
         flat,
-        :size="$q.platform.is.mobile ? sm : md",
+        :size="$q.platform.is.mobile ? 'sm' : 'md'",
         v-if="auth.userData.actor",
         :label="auth.userData.actor",
         @click="auth.logout()",

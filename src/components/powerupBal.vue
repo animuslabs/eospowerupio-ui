@@ -4,7 +4,7 @@ div
     h6.no-margin.text-weight-light.text-grey-9 PowerUp Balance
     small Deposit EOS to pre-purchase the auto-powerup service. Automatic PowerUp costs will be deducted from your balance. (Powerup cost + 1% fee)
     .row.q-ma-md
-      .col.on-left
+      .col-auto.on-left
         small Remaining Balance
         q-input(
           filled,
@@ -13,7 +13,7 @@ div
           suffix="EOS",
           type="number"
         )
-      .col.on-right
+      .col-auto
         small Pre-Pay EOS
         q-input(
           filled,
@@ -29,14 +29,14 @@ div
           icon="add",
           @click="addFunds()"
         )
-      .col-auto
-        q-btn.full-width(
+      .col
+        q-btn(
           label="max",
           flat,
           color="teal",
           :disable="!depositValid",
           @click="setMaxDeposit()",
-          style="margin-top: 22px; height: 55px"
+          style="margin-top: 22px; height: 55px; width:50px;"
         )
     //- div {{ auth.userData }}
     //- div {{auth.anchor.auth.toJSON()}}

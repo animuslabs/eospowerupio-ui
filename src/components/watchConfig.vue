@@ -6,8 +6,7 @@ q-dialog(ref="dialog", @hide="onDialogHide")
       .row.q-pt-md
         small account name
       .row
-        q-input(v-model="accountName")
-
+        q-input(v-model="accountName" :readonly="setupData.freezeName")
       .row.q-pt-md
         small Quick Preset
       .row.justify-center.q-mr-md.q-ml-md
@@ -64,7 +63,7 @@ export default {
       quickSetting: this.setupData.initialQuickSetting,
     };
   },
-  props: ["setupData", "owner","auth","initialQuickSetting"],
+  props: ["setupData", "owner","auth","initialQuickSetting","freezeName"],
   mounted() {
     // @ts-ignore
     this.accountName = this.config.watch_data.account

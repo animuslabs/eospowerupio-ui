@@ -3,13 +3,15 @@ div
   .row.justify-center
     .col-sm-10.col-md-6.col-lg-5.col-xl-4
       .row.justify-center.q-ma-m.q-pa-md
-        p eospowerup.io can monitor your accounts to perform auto-powerups automatically when your resources are low.
+        //- p eospowerup.io can monitor your accounts to perform auto-powerups automatically when your resources are low.
       div(v-if="auth.userData.actor")
         powerupBal
         powerupWatch
       div(v-else)
-        div(style="height:100px;").relative-position.full-width
+        div(style="height:100px;").relative-position.full-width.text-center
           h5.absolute-center Login to continue
+        //- .row.justify-center.q-pa-xl
+        //-   q-btn(label="login" @click="loginUser" color="cyan" flat size="lg")
    
 </template>
 
@@ -59,6 +61,9 @@ export default {
     return {
       auth: state.auth
     };
+  },
+  methods:{
+
   },
   mounted() {
  

@@ -5,24 +5,14 @@ div
     small Accounts in your watchlist receive automatic resources dynamically based on live usage. You can watch as many accounts as you would like.
     q-list
       div(v-for="wAcct of watchAccounts", :key="wAcct.account")
-        .shadow-1.q-ma-md
-          .row
-            .col-auto.bg-white.q-ma-sm.q-ml-md
-              small watch account
-              div {{ wAcct.account }}
-            .col.justify-end.q-pt-sm
-              .row.justify-end
+        .box.q-ma-sm.q-mb-lg.q-mb-log
+          .row.items-center.justify-between.full-width.bg-grey-8
+            .col-auto.q-ml-md
+              h6.text-weight-light.text-white.q-mt-xs.q-mb-xs {{ wAcct.account }}
+            .col-auto
+              .row.items-center(style="vertical-align: middle;")
                 q-btn(
-                  icon="close",
-                  size="sm",
-                  flat,
-                  label="delete",
-                  color="red",
-                  stretch,
-                  stack,
-                  @click="deleteWatchAccount(wAcct.account)"
-                )
-                q-btn(
+                  color="grey-1"
                   icon="edit",
                   size="sm",
                   flat,
@@ -32,6 +22,7 @@ div
                   @click="editWatchAccount(wAcct)"
                 )
                 q-btn(
+                  color="grey-1"
                   v-if="wAcct.active",
                   icon="pause",
                   size="sm",
@@ -42,6 +33,7 @@ div
                   @click="pauseWatchAccount(wAcct)"
                 ) 
                 q-btn(
+                  color="grey-1"
                   v-if="!wAcct.active",
                   icon="visibility",
                   size="sm",
@@ -51,18 +43,28 @@ div
                   stack,
                   @click="activateWatchAccount(wAcct)"
                 ) 
+                q-btn(
+                  icon="close",
+                  size="sm",
+                  flat,
+                  label="delete",
+                  color="grey-1"
+                  stretch,
+                  stack,
+                  @click="deleteWatchAccount(wAcct.account)"
+                )
           q-separator(size="1px", color="grey-9")
-          .row
-            .col.bg-grey-2.q-ma-sm.q-pa-sm
+          .row.justify-center.full-width.q-pb-sm.q-mb-sm
+            .col-sm-6.col-md-3.q-pr-md.q-pt-sm.q-pl-md
               small min CPU (ms)
               div {{ wAcct.min_cpu_ms }}
-            .col.bg-grey-2.q-ma-sm.q-pa-sm
+            .col-sm-6.col-md-3.q-pr-md.q-pt-sm.q-pl-md
               small PowerUp (ms)
               div {{ wAcct.powerup_quantity_ms }}
-            .col.bg-grey-2.q-ma-sm.q-pa-sm
+            .col-sm-6.col-md-3.q-pr-md.q-pt-sm.q-pl-md
               small min RAM (Kb)
               div {{ wAcct.min_kb_ram }}
-            .col.bg-grey-2.q-ma-sm.q-pa-sm
+            .col-sm-6.col-md-3.q-pr-md.q-pt-sm.q-pl-md
               small buy RAM (Kb)
               div {{ wAcct.buy_ram_quantity_kb }}
 
@@ -141,6 +143,7 @@ export default {
         setupData: {
           title: "Edit Watch Account",
           initialQuickSetting:0,
+          freezeName:true,
           watch_data
         },
         component: watchConfig,
@@ -191,3 +194,12 @@ export default {
   },
 };
 </script>
+
+<style>
+.box {
+  box-shadow:
+  0 .8px 5.2px rgba(0, 0, 0, 0.134),
+  0 3.7px 10.3px rgba(0, 0, 0, 0.148)
+;background: white;
+}
+</style>
