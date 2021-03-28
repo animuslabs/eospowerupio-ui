@@ -6,12 +6,15 @@ div
     q-list
       div(v-for="wAcct of watchAccounts", :key="wAcct.account")
         .box.q-ma-sm.q-mb-lg.q-mb-log
-          .row.items-center.justify-between.full-width.bg-grey-8
+          .row.items-center.justify-between.full-width.bg-grey-8.q-mt-md
             .col-auto.q-ml-md
-              h6.text-weight-light.text-white.q-mt-xs.q-mb-xs {{ wAcct.account }}
+              h6.text-weight-light.text-white.q-mt-xs.q-mb-xs.gt-sm {{ wAcct.account }}
+              div.text-white.q-mt-xs.q-mb-xs.lt-md(style="font-size:17px;") {{ wAcct.account }}
             .col-auto
-              .row.items-center(style="vertical-align: middle;")
+              .row.justify-end.full-width(style="vertical-align: middle;")
                 q-btn(
+                  style="padding-top:5px;"
+                  padding="sm"
                   color="grey-1"
                   icon="edit",
                   size="sm",
@@ -22,6 +25,8 @@ div
                   @click="editWatchAccount(wAcct)"
                 )
                 q-btn(
+                  style="padding-top:5px;"
+                  padding="sm"
                   color="grey-1"
                   v-if="wAcct.active",
                   icon="pause",
@@ -33,6 +38,9 @@ div
                   @click="pauseWatchAccount(wAcct)"
                 ) 
                 q-btn(
+                  style="padding-top:5px;"
+                  padding="sm"
+                  
                   color="grey-1"
                   v-if="!wAcct.active",
                   icon="visibility",
@@ -44,6 +52,8 @@ div
                   @click="activateWatchAccount(wAcct)"
                 ) 
                 q-btn(
+                  style="padding-top:5px;"
+                  padding="sm"
                   icon="close",
                   size="sm",
                   flat,

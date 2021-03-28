@@ -115,7 +115,10 @@ export default {
     this.auth.init();
     console.log("Saved authMethod:", this.auth.authMethod);
     this.auth.login();
-    if (this.$route.name == "index") this.$router.replace("/free");
+    if (this.$route.name == "index") {
+      this.tab = 'free'
+    // this.$router.replace("/free")
+    }
   },
   methods: {
     async submitEmail() {

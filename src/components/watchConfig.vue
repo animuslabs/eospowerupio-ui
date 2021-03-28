@@ -1,33 +1,35 @@
 <template lang="pug">
 q-dialog(ref="dialog", @hide="onDialogHide" :maximized="$q.platform.is.mobile")
   q-card.q-dialog-plugin(style="overflow:auto; width:90vw; min-width:300px;")
+    div.bg-grey-8.q-pa-md
+        h6.no-margin.text-weight-light.text-grey-1 {{ config.title }}
     .q-pa-md
-      h6.no-margin.text-weight-light.text-grey-9 {{ config.title }}
       div
         .row
           .col-auto
-            .row.q-pt-md
-              small account name
+            .row
+              small Account Name
             .row
               q-input(v-model="accountName" :readonly="setupData.freezeName")
-          
-        .row.q-pt-md
-          small Quick Preset 
-        .row.justify-center
-          .row.justify-center(style="width:300px")
-            .row.justify-center.full-width
-              .col.text-green-9.q-ma-xs.q-pa-sm.text-center(style="text-transform: uppercase;")
-                small.capitalize basic
-              q-separator(vertical inset color="grey-5" size="2px")
-              .col.text-orange-7.q-ma-xs.q-pa-sm.text-center(style="text-transform: uppercase;")
-                small power 
-              q-separator(vertical inset color="grey-5" size="2px")
-              .col.text-red.q-ma-xs.q-pa-sm.text-center(style="text-transform: uppercase;")
-                small advanced
+            div(style="height:10px;").q-lt-sm
+          .div.justify-center
+            .row
+              small Quick Preset 
             .row.justify-center
-              .col(style="width:200px;")
-                q-slider( v-model="quickSetting", :min="1", :max="3", markers, snap :color="sliderColor")
-        .row
+              .row.justify-center(style="width:300px")
+                .row.justify-center.full-width
+                  .col.text-green-9.q-ma-xs.q-pa-sm.text-center(style="text-transform: uppercase;")
+                    small.capitalize basic
+                  q-separator(vertical inset color="grey-5" size="2px")
+                  .col.text-orange-7.q-ma-xs.q-pa-sm.text-center(style="text-transform: uppercase;")
+                    small power 
+                  q-separator(vertical inset color="grey-5" size="2px")
+                  .col.text-red.q-ma-xs.q-pa-sm.text-center(style="text-transform: uppercase;")
+                    small advanced
+                .row.justify-center
+                  .col(style="width:200px;")
+                    q-slider( v-model="quickSetting", :min="1", :max="3", markers, snap :color="sliderColor" style="height:20px;")
+        .row.q-mt-md
           small Manual Config
         .row.q-ma-sm.justify-center
 
@@ -35,34 +37,34 @@ q-dialog(ref="dialog", @hide="onDialogHide" :maximized="$q.platform.is.mobile")
             small min CPU (ms)
               q-input(
                 v-model="config.watch_data.min_cpu_ms",
-                style="width: 80px",
+                style="width: 60px",
                 filled
-              )
+              ).shadow-1
           .col-sm-6.col-md-3.q-pr-md.q-pt-sm.q-pl-md
             small PowerUp (ms)
               q-input(
                 v-model="config.watch_data.powerup_quantity_ms",
-                style="width: 80px",
+                style="width: 60px",
                 filled
-              )
+              ).shadow-1
           .col-sm-6.col-md-3.q-pr-md.q-pt-sm.q-pl-md
             small min RAM (Kb)
               q-input(
                 v-model="config.watch_data.min_kb_ram",
-                style="width: 80px",
+                style="width: 60px",
                 filled
-              )
+              ).shadow-1
           .col-sm-6.col-md-3.q-pr-md.q-pt-sm.q-pl-md
             small buy RAM (Kb)
               q-input(
                 v-model="config.watch_data.buy_ram_quantity_kb",
-                style="width: 80px",
+                style="width: 60px",
                 filled
-              )
+              ).shadow-1
     q-card-actions(align="right")
       q-btn(color="grey", label="Cancel", @click="onCancelClick", flat)
       q-btn(color="cyan", :label="actionLabelName", @click="registerDevice", outline)
-    div(style="height:200px;" v-if="$q.platform.is.mobile")
+    div(style="height:250px;" v-if="$q.platform.is.mobile")
 </template>
 
 <script>
@@ -72,7 +74,7 @@ export default {
       config: Object.assign({}, this.setupData),
       rawAccountName: "",
       quickSetting: this.setupData.initialQuickSetting,
-      sliderColor:'cyan'
+      sliderColor:'green'
     };
   },
   props: ["setupData", "owner","auth","initialQuickSetting","freezeName"],
