@@ -5,15 +5,16 @@ q-layout(padding)
       q-toolbar-title
         .row.items-center
           q-img.on-left(src="/icons/favicon-128x128.png", width="20px")
-          div EOS PowerUp
+          small EOS PowerUp
 
       q-btn(
         stretch,
         flat,
+        :size="$q.platform.is.mobile ? sm : md",
         v-if="auth.userData.actor",
         :label="auth.userData.actor",
         @click="auth.logout()",
-        :icon="'img:/'+auth.authMethod+'-logo.png'"
+        :icon="'img:/' + auth.authMethod + '-logo.png'"
       )
 
       q-btn-dropdown(
@@ -34,21 +35,21 @@ q-layout(padding)
             @click="authItem.login()"
           )
             q-item-section(avatar)
-              q-icon(:name="'img:/'+name+'-logo.png'")
+              q-icon(:name="'img:/' + name + '-logo.png'")
             q-item-section
               div {{ authItem.title }}
               //- q-item-label(clickable) {{ auth.title }}
             q-item-section
-    q-separator(size="4px" color="cyan")
-  div(style="padding-top:53px;").bg-grey-2
-    q-tabs(v-model="tab" class="text-cyan" inline-label)
-      q-tab(name="free" label="Free" icon="bolt"  )
-      q-tab(name="auto" label="Auto" icon="visibility" )
+    q-separator(size="4px", color="cyan")
+  div.bg-grey-2(style="padding-top: 53px")
+    q-tabs.text-cyan(v-model="tab", inline-label)
+      q-tab(name="free", label="Free", icon="bolt")
+      q-tab(name="auto", label="Auto", icon="visibility")
 
   router-view
-  div(style="height:300px;")
+  div(style="height: 300px")
   q-footer
-    q-separator(size="3px" color="cyan")
+    q-separator(size="3px", color="cyan")
     .row.q-pa-md.bg-grey-9
       .col
         .row.justify-center
@@ -57,22 +58,28 @@ q-layout(padding)
           p.text-grey-1 Leave your e-mail to be notified when new features are announced.
       .col
         .row.justify-center
-          q-form(@submit="submitEmail" v-if="!collectedEmail")
+          q-form(@submit="submitEmail", v-if="!collectedEmail")
             q-input(
-              :rules="[]"
-              dark
+              :rules="[]",
+              dark,
               v-model="useremail",
               type="text",
               label="email",
-              input-style="text-align:center;"
+              input-style="text-align:center;",
               color="cyan"
             )
             .row.justify-center
-              q-btn.q-ma-sm(:loading="loadingEmail" type="submit", flat, label="submit", clearable :disable="collectedEmail" color="cyan")
-        .row.q-pa-sm.q-ma-lg.justify-center(v-if="collectedEmail").bg-yellow
+              q-btn.q-ma-sm(
+                :loading="loadingEmail",
+                type="submit",
+                flat,
+                label="submit",
+                clearable,
+                :disable="collectedEmail",
+                color="cyan"
+              )
+        .row.q-pa-sm.q-ma-lg.justify-center.bg-yellow(v-if="collectedEmail")
           div email registered
-
-    
 
 </q-layout>
 </template>
@@ -86,8 +93,8 @@ import ax from "axios";
 const globalState = Vue.observable(state);
 
 function validateEmail(email) {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
 }
 
 export default {
@@ -95,10 +102,10 @@ export default {
   components: {},
   data() {
     return {
-      tab:this.$route.name,
+      tab: this.$route.name,
       // global: state.global,
-      loadingEmail:false,
-      collectedEmail:false,
+      loadingEmail: false,
+      collectedEmail: false,
       useremail: "",
       auth: globalState.auth,
       userData: globalState.auth.userData,
@@ -108,27 +115,29 @@ export default {
     this.auth.init();
     console.log("Saved authMethod:", this.auth.authMethod);
     this.auth.login();
-    if(this.$route.name == 'index') this.$router.replace('/free')
+    if (this.$route.name == "index") this.$router.replace("/free");
   },
-  methods:{
+  methods: {
     async submitEmail() {
-      const valid = validateEmail(this.useremail)
-      if(!valid) return
+      const valid = validateEmail(this.useremail);
+      if (!valid) return;
       console.log("submit email");
       this.loadingEmail = true;
-      await ax.post('https://api.eospowerup.io/registerEmail/'+ this.useremail)
-      this.collectedEmail = true
+      await ax.post(
+        "https://api.eospowerup.io/registerEmail/" + this.useremail
+      );
+      this.collectedEmail = true;
       this.loadingEmail = false;
-    }
-  },
-  watch:{
-    'tab'(val){
-      if (this.$route.name == val) return
-      this.$router.push('/'+val)
     },
-    '$route'(){
-      this.tab = this.$route.name
-    }
-  }
+  },
+  watch: {
+    tab(val) {
+      if (this.$route.name == val) return;
+      this.$router.push("/" + val);
+    },
+    $route() {
+      this.tab = this.$route.name;
+    },
+  },
 };
 </script>
