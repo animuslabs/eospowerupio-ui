@@ -7,12 +7,12 @@ div
       .col-auto.q-mr-lg(style="width:160px")
         small Remaining Balance
         q-input(
-          filled,
+          disable
           readonly,
           v-model="depositedBal",
           suffix="EOS",
           type="number"
-        )
+        ).bg-white
       .col-auto(style="width:160px")
         small Pre-Pay EOS
         q-input(
