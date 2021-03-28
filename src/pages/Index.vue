@@ -2,10 +2,7 @@
 div
   div
     .row.justify-center
-      h5 PowerUp Your Account
-    .row.justify-center
-      .powerupbtn.powerupbtn(style="height: 40px")
-      q-form(@submit="freePowerup()")
+      q-form(@submit="freePowerup()").q-ma-md
         q-input(
           v-model="accountInput",
           label="EOS Account Name",
@@ -16,12 +13,11 @@ div
           q-btn(size="lg", color="cyan" outline type="submit" :loading="loadingPowerup")
             q-icon.powerupbtn(name="bolt")
             div PowerUp
-    .row.justify-center.q-ma-md(style="width: 100%")
-      .col-auto(style="width: 400px")
-        ul.text-grey-9 
-          li Accounts can claim one free PowerUp every 12 hours.
-          li Learn more about #[a(href="https://eos.io/eos-public-blockchain/powerup-model/") PowerUp]
-          li Want more power? Register accounts to receive automatic PowerUps (and RAM) based on usage. Check out #[a(href="/auto") Auto Powerup]
+    .row.justify-center
+      ul.text-grey-9(style="max-width:400px;")
+        li Accounts can claim one free PowerUp every 12 hours.
+        li Learn more about #[a(href="https://eos.io/eos-public-blockchain/powerup-model/") PowerUp]
+        li Want more power? Register accounts to receive automatic PowerUps (and RAM) based on usage. Check out #[a(href="/auto") Auto Powerup]
 
       
     .q-pa-lg

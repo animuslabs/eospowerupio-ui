@@ -3,7 +3,6 @@ div
   .row.justify-center
     .col-sm-10.col-md-6.col-lg-5.col-xl-4
       .row.justify-center.q-ma-m.q-pa-md
-        h5.q-mt-md.q-mb-xs PowerUp Your Accounts
         p eospowerup.io can monitor your accounts to perform auto-powerups automatically when your resources are low.
       div(v-if="auth.userData.actor")
         powerupBal

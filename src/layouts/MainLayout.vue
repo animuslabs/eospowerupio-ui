@@ -1,6 +1,6 @@
 <template lang="pug">
 q-layout(padding)
-  q-header.bg-grey-8.shadow-0
+  q-header.bg-grey-9.shadow-0
     q-toolbar
       q-toolbar-title
         .row.items-center
@@ -13,7 +13,7 @@ q-layout(padding)
         v-if="auth.userData.actor",
         :label="auth.userData.actor",
         @click="auth.logout()",
-        :icon="'img:/anchor-logo.png'"
+        :icon="'img:/'+auth.authMethod+'-logo.png'"
       )
 
       q-btn-dropdown(
@@ -29,45 +29,46 @@ q-layout(padding)
             v-close-popup,
             tabindex="0",
             v-ripple,
-            v-for="authItem of auth.loginOptions",
+            v-for="(authItem,name) of auth.loginOptions",
             :key="authItem.title",
             @click="authItem.login()"
           )
             q-item-section(avatar)
-              q-icon(name="img:/anchor-logo.png")
+              q-icon(:name="'img:/'+name+'-logo.png'")
             q-item-section
               div {{ authItem.title }}
               //- q-item-label(clickable) {{ auth.title }}
             q-item-section
     q-separator(size="4px" color="cyan")
-  div(style="padding-top:60px;").bg-grey-2
-    q-tabs(v-model="tab" class="text-cyan" size="lg")
-      q-tab(name="free" label="Free" )
-      q-tab(name="auto" label="Auto" )
+  div(style="padding-top:53px;").bg-grey-2
+    q-tabs(v-model="tab" class="text-cyan" inline-label)
+      q-tab(name="free" label="Free" icon="bolt"  )
+      q-tab(name="auto" label="Auto" icon="visibility" )
 
   router-view
   div(style="height:300px;")
-  q-footer(color="grey")
+  q-footer
     q-separator(size="3px" color="cyan")
-    .row.q-pa-md.bg-grey-1
+    .row.q-pa-md.bg-grey-9
       .col
         .row.justify-center
-          h6.no-margin.text-weight-light.text-grey-9 More Features...
+          h6.no-margin.text-weight-light.text-grey-1 More Features...
         .row.justify-center
-          p.text-grey-9 Leave your e-mail to be notified when new features are announced.
+          p.text-grey-1 Leave your e-mail to be notified when new features are announced.
       .col
         .row.justify-center
           q-form(@submit="submitEmail" v-if="!collectedEmail")
             q-input(
-
+              :rules="[]"
+              dark
               v-model="useremail",
               type="text",
               label="email",
-              style="width: 200px",
               input-style="text-align:center;"
+              color="cyan"
             )
             .row.justify-center
-              q-btn.q-ma-sm(:loading="loadingEmail" type="submit", flat, label="submit", clearable :disable="collectedEmail" color="black")
+              q-btn.q-ma-sm(:loading="loadingEmail" type="submit", flat, label="submit", clearable :disable="collectedEmail" color="cyan")
         .row.q-pa-sm.q-ma-lg.justify-center(v-if="collectedEmail").bg-yellow
           div email registered
 
@@ -83,6 +84,11 @@ import { state } from "../state/global";
 import ax from "axios";
 
 const globalState = Vue.observable(state);
+
+function validateEmail(email) {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
 
 export default {
   name: "MainLayout",
@@ -101,11 +107,13 @@ export default {
   mounted() {
     this.auth.init();
     console.log("Saved authMethod:", this.auth.authMethod);
-    this.auth.login(true);
+    this.auth.login();
     if(this.$route.name == 'index') this.$router.replace('/free')
   },
   methods:{
     async submitEmail() {
+      const valid = validateEmail(this.useremail)
+      if(!valid) return
       console.log("submit email");
       this.loadingEmail = true;
       await ax.post('https://api.eospowerup.io/registerEmail/'+ this.useremail)
