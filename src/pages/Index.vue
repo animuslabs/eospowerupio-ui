@@ -17,7 +17,7 @@
       ul.text-grey-9(style="max-width:400px;")
         li Accounts can claim one free PowerUp every 12 hours.
         li Learn more about #[a(href="https://eos.io/eos-public-blockchain/powerup-model/") PowerUp]
-        li Want more power? Register accounts to receive automatic PowerUps (and RAM) based on usage. Check out #[a(href="/auto") Auto Powerup]
+        li Want more power? Register accounts to receive automatic PowerUps (and RAM) based on usage. Check out #[a(href="/auto") Auto PowerUp]
 
       
     .q-pa-lg

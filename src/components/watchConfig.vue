@@ -48,14 +48,14 @@ q-dialog(ref="dialog", @hide="onDialogHide" :maximized="$q.platform.is.mobile")
                 filled
               ).shadow-1
           .col-sm-6.col-md-3.q-pr-md.q-pt-sm.q-pl-md
-            small min RAM (Kb)
+            small min RAM (KB)
               q-input(
                 v-model="config.watch_data.min_kb_ram",
                 style="width: 60px",
                 filled
               ).shadow-1
           .col-sm-6.col-md-3.q-pr-md.q-pt-sm.q-pl-md
-            small buy RAM (Kb)
+            small buy RAM (KB)
               q-input(
                 v-model="config.watch_data.buy_ram_quantity_kb",
                 style="width: 60px",
