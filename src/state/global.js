@@ -5,6 +5,7 @@ import AnchorLinkBrowserTransport from 'anchor-link-browser-transport'
 import queries from '../lib/queries'
 import { Notify } from 'quasar'
 import * as scatter from '../lib/scatter'
+import Vue from 'vue'
 const state = {
   global: {
     data: "hello"
@@ -30,10 +31,7 @@ const state = {
           console.log('Scatter Account:', scatterAuth.account);
           state.auth.scatter = scatterAuth.eos
           state.auth.scatterJS = scatterAuth.ScatterJS
-          state.auth.userData = {
-            actor: scatterAuth.account.name,
-            permission: scatterAuth.account.authority
-          }
+          Vue.set(state.auth,'userData',{actor:scatterAuth.account.name,permission:scatterAuth.account.authority})
           state.auth.saveAuthMethod('scatter')
         },
         async logout() {
@@ -64,8 +62,8 @@ const state = {
             id = await link.restoreSession('eospowerupio')
             // if(autoOnly) return
             if (!id) id = (await link.login('eospowerupio')).session
-            state.auth.userData.actor = id.auth.actor.toString()
-            state.auth.userData.permission = id.auth.permission.toString()
+            Vue.set(state.auth,'userData',{actor:id.auth.actor.toString(),permission:id.auth.permission.toString()})
+
             state.auth.anchor = id
             state.auth.saveAuthMethod('anchor')
           } catch (error) {
@@ -93,7 +91,7 @@ const state = {
     login() {
       console.log(state.auth.authMethod);
       if (!state.auth.authMethod) state.auth.loginOptions.scatter.login()
-      state.auth.loginOptions[state.auth.authMethod].login()
+      else state.auth.loginOptions[state.auth.authMethod].login()
     },
     async doActions(actions) {
       actions = actions.map(el => {
@@ -107,7 +105,8 @@ const state = {
       }
     },
     resetUserData() {
-      this.userData = { actor: null, permission: null }
+      // this.userData = { actor: null, permission: null }
+      Vue.set(state.auth,'userData',{actor:null,permission:null})
     },
     init() {
       const authMethod = window.localStorage.getItem('authMethod')

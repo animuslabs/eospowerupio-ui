@@ -1,5 +1,4 @@
 <template lang="pug">
-div
   div
     .row.justify-center
       q-form(@submit="freePowerup()").q-ma-md
@@ -8,9 +7,10 @@ div
           label="EOS Account Name",
           outlined,
           input-style="font-size:30px; text-align:center;"
+          clearable
         ) 
         .row.justify-center.q-ma-md
-          q-btn(size="lg", color="cyan" outline type="submit" :loading="loadingPowerup")
+          q-btn(size="lg", color="cyan" outline type="submit" :loading="loadingPowerup").bg-grey-1.shadow-2
             q-icon.powerupbtn(name="bolt")
             div PowerUp
     .row.justify-center
@@ -76,7 +76,11 @@ ul ul {
 
 <script>
 import { Dialog } from "quasar";
+import {state} from '../state/global.js'
+import Vue from 'vue'
+const globalState = Vue.observable(state);
 
+// console.log(state.auth.userData)
 import ax from "axios";
 export default {
   name: "PageIndex",
@@ -87,11 +91,13 @@ export default {
       useremail: "",
       collectedEmail:false,
       loadingEmail:false,
-      loadingPowerup:false
+      loadingPowerup:false,
+      auth: globalState.auth,
+      // userData:Vue.observable(state.auth.userData)
+      // userData:auth.userData
     };
   },
   methods: {
-
     async freePowerup() {
       this.loadingPowerup = true
       let message
@@ -117,7 +123,11 @@ export default {
     },
   },
   watch:{
-
+    'auth.userData'(data){
+      console.log('user data update',data)
+      if(data.actor) this.accountInput = data.actor
+      else this.accountInput = null
+    }
   }
 };
 </script>

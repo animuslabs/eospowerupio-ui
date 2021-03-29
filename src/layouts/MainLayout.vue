@@ -41,8 +41,8 @@ q-layout(padding)
               //- q-item-label(clickable) {{ auth.title }}
             q-item-section
     q-separator(size="4px", color="cyan")
-  div.bg-grey-2(style="padding-top: 53px")
-    q-tabs.text-cyan(v-model="tab", inline-label)
+  div.bg-grey-3(style="padding-top: 53px")
+    q-tabs.text-cyan-8(v-model="tab", inline-label)
       q-tab(name="free", label="Free", icon="bolt")
       q-tab(name="auto", label="Auto", icon="visibility")
 
