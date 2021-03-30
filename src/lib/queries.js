@@ -1,6 +1,11 @@
 const { rpc } = require('./eosjs')()
 const code = 'eospowerupio'
 const queries = {
+  async getAccount(accountName){
+    if (!accountName) return false
+    const result = (await rpc.get_account(accountName))
+    return result
+  },
   async getDeposited(accountName) {
     if (!accountName) return "0.0000 EOS"
     const result = (await rpc.get_table_rows({ code, table: "account", scope: accountName, lower_bound: "EOS" })).rows[0].balance

@@ -6,13 +6,19 @@
           v-model="accountInput",
           label="EOS Account Name",
           outlined,
-          input-style="font-size:30px; text-align:center;"
+          color="cyan"
+          input-style="font-size:25px; text-align:center;"
           clearable
-        ) 
+        )
         .row.justify-center.q-ma-md
-          q-btn(size="lg", color="cyan" outline type="submit" :loading="loadingPowerup").bg-grey-1.shadow-2
-            q-icon.powerupbtn(name="bolt")
-            div PowerUp
+          div(v-if="nameValid")
+            q-btn(size="md", color="cyan-7" outline type="submit" :loading="loadingPowerup").bg-grey-1.shadow-2
+              q-icon.powerupbtn(name="bolt")
+              div PowerUp
+          div(v-else)
+            q-btn(size="md", color="grey" flat type="submit" :loading="loadingPowerup" :disable="!nameValid").bg-grey-4.shadow-0
+              q-icon(name="bolt")
+              div PowerUp
     .row.justify-center
       ul.text-grey-9(style="max-width:400px;")
         li Accounts can claim one free PowerUp every 12 hours.
@@ -79,6 +85,10 @@ import { Dialog } from "quasar";
 import {state} from '../state/global.js'
 import Vue from 'vue'
 const globalState = Vue.observable(state);
+import * as util from '../lib/util.js'
+import { debounce } from 'quasar'
+import query from '../lib/queries.js'
+
 
 // console.log(state.auth.userData)
 import ax from "axios";
@@ -93,9 +103,14 @@ export default {
       loadingEmail:false,
       loadingPowerup:false,
       auth: globalState.auth,
+      nameValid:false
       // userData:Vue.observable(state.auth.userData)
       // userData:auth.userData
     };
+  },
+  mounted(){
+      if(this.auth.userData.actor) this.accountInput = this.auth.userData.actor
+      else this.accountInput = null
   },
   methods: {
     async freePowerup() {
@@ -123,6 +138,15 @@ export default {
     },
   },
   watch:{
+    async 'accountInput'(data){
+      const valid = util.validateName(data)
+      if(valid) {
+        const exists = await query.getAccount(this.accountInput).catch(err => {return})
+        console.log(exists);
+        if(!exists) this.nameValid = false
+        else this.nameValid = true
+      } else this.nameValid = false
+    },
     'auth.userData'(data){
       console.log('user data update',data)
       if(data.actor) this.accountInput = data.actor

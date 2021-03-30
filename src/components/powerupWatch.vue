@@ -187,7 +187,7 @@ export default {
   },
   mounted() {
     this.getWatchlist();
-    setInterval(() => {
+    this.interval = setInterval(() => {
       this.getWatchlist();
     }, 5000);
   },

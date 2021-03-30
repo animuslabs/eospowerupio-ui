@@ -41,7 +41,7 @@ q-layout(padding)
               //- q-item-label(clickable) {{ auth.title }}
             q-item-section
     q-separator(size="4px", color="cyan")
-  div.bg-grey-3(style="padding-top: 53px")
+  div.bg-grey-3(style="padding-top: 53px").shadow-1
     q-tabs.text-cyan-8(v-model="tab", inline-label)
       q-tab(name="free", label="Free", icon="bolt")
       q-tab(name="auto", label="Auto", icon="visibility")
@@ -97,6 +97,7 @@ function validateEmail(email) {
   return re.test(String(email).toLowerCase());
 }
 
+
 export default {
   name: "MainLayout",
   components: {},
@@ -134,6 +135,7 @@ export default {
     },
   },
   watch: {
+    
     tab(val) {
       if (this.$route.name == val) return;
       this.$router.push("/" + val);
