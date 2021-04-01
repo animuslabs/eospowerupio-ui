@@ -25,25 +25,6 @@
         li Learn more about #[a(href="https://eos.io/eos-public-blockchain/powerup-model/") PowerUp]
         li Want more power? Register accounts to receive automatic PowerUps (and RAM) based on usage. Check out #[a(href="/auto") Auto PowerUp]
 
-      
-    .q-pa-lg
-    .row.justify-center.q-ma-lg.absolute-bottom(style="bottom:40px;")
-      q-btn(
-        size="md",
-        flat,
-        color="cyan-8",
-        type="a",
-        href="https://twitter.com/eospowerup",
-        target="_blank"
-      ) twitter
-      q-btn(
-        size="md",
-        flat,
-        color="cyan-8",
-        type="a",
-        href="https://t.me/eosresourcemodel",
-        target="_blank"
-      ) telegram
 </template>
 
 <style>

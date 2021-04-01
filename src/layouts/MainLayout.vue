@@ -49,14 +49,55 @@ q-layout(padding)
   router-view
   div(style="height: 300px")
   q-footer
-    q-separator(size="3px", color="cyan")
+    q-separator(size="5px", color="cyan")
     .row.q-pa-md.bg-grey-9
       .col
         .row.justify-center
-          h6.no-margin.text-weight-light.text-grey-1 More Features...
+              q-btn(
+                size="md",
+                flat,
+                color="cyan-8",
+                type="a",
+                href="https://stats.boid.com/d/U3aaAhwZz/eos-resources?orgId=1&from=now-1h&to=now",
+                target="_blank"
+                ) Resources stats
+        q-separator(size="20px", color="grey-9")  
         .row.justify-center
-          p.text-grey-1 Leave your e-mail to be notified when new features are announced.
+            q-btn.align-right(
+              flat,
+              type="a",
+              href="https://twitter.com/eospowerup",
+              target="_blank"
+              )
+              img(src="../assets/twitter.svg", height="40x")
+            q-btn.align-left(
+              flat,
+              type="a",
+              href="https://t.me/eosresourcemodel",
+              target="_blank"
+              )
+              img(src="../assets/telegram-app.svg", height="40px")
       .col
+        .row.justify-center
+          p.text-cyan-8 POWERED BY:
+        .row.justify-center
+            q-btn.align-right(
+              flat,
+              type="a",
+              href="https://boid.com",
+              target="_blank"
+              )
+              img(src="../assets/Boid_Logo.png", height="55x")
+            q-btn.align-left(
+              flat,
+              type="a",
+              href="https://blockbase.network",
+              target="_blank"
+              )
+              img(src="../assets/blockbase_b.svg", height="55px")
+      .col
+        .row.justify-center
+          p.text-cyan-8 Leave your e-mail for new feature announcements.
         .row.justify-center
           q-form(@submit="submitEmail", v-if="!collectedEmail")
             q-input(
@@ -64,7 +105,7 @@ q-layout(padding)
               dark,
               v-model="useremail",
               type="text",
-              label="email",
+              label="e-mail",
               input-style="text-align:center;",
               color="cyan"
             )
@@ -78,8 +119,9 @@ q-layout(padding)
                 :disable="collectedEmail",
                 color="cyan"
               )
+
         .row.q-pa-sm.q-ma-lg.justify-center.bg-yellow(v-if="collectedEmail")
-          div email registered
+          div e-mail registered
 
 </q-layout>
 </template>
