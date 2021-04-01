@@ -1,8 +1,11 @@
 <template lang="pug">
 div
   q-card.q-ma-md.q-pa-md
-    h6.no-margin.text-weight-light.text-grey-9 PowerUp Balance
-    small Deposit EOS to pre-purchase the auto-powerup service. Automatic PowerUp costs will be deducted from your balance. (Powerup cost + 1% fee)   
+    h5.no-margin.text-weight-light.text-grey-9 PowerUp Balance
+    q-separator.q-pa-sm.bg-white
+    p.no-margin.text-weight-light.text-grey-9 Deposit EOS to pre-purchase the Auto-PowerUp service.
+    p.no-margin.text-weight-light.text-grey-9 Auto-PowerUp costs will be deducted from your balance (cost + 1% fee).
+    q-separator.q-pa-sm.bg-white
     .row.q-ma-md
       .col-auto.q-mr-lg(style="width:160px")
         small Remaining Balance

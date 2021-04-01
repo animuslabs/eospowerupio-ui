@@ -20,11 +20,27 @@
               q-icon(name="bolt")
               div PowerUp
     .row.justify-center
-      ul.text-grey-9(style="max-width:400px;")
-        li Accounts can claim one free PowerUp every 12 hours.
-        li Learn more about #[a(href="https://eos.io/eos-public-blockchain/powerup-model/") PowerUp]
-        li Want more power? Register accounts to receive automatic PowerUps (and RAM) based on usage. Check out #[a(href="/auto") Auto PowerUp]
-
+      .text-grey-9(style="max-width:400px;")
+        q-list
+          q-item
+            q-item-section(avatar)
+              q-icon(color="cyan-7" name="bolt")
+            q-item-section EOS accounts can claim one free PowerUp every 12 hours.
+          q-separator
+          q-item
+            q-item-section(avatar)
+              q-icon(color="cyan-7" name="bolt")
+            q-item-section There were very important changes to the way EOS blockchain manages it's resources. Learn more about #[a(href="https://eos.io/eos-public-blockchain/powerup-model/") PowerUp]
+          q-separator
+          q-item
+            q-item-section(avatar)
+              q-icon(color="cyan-7" name="bolt")
+            q-item-section Want more power? Register accounts to receive automatic PowerUps (and RAM) based on usage. Check out #[a(href="/auto") Auto PowerUp]
+          q-separator
+          q-item
+            q-item-section(avatar)
+              q-icon(color="cyan-7" name="bolt")
+            q-item-section Free powerups are funded by community donations. To make a donation you can send any amount of EOS to "eospowerupio" account with the memo "donation"
 </template>
 
 <style>
