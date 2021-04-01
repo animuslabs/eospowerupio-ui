@@ -2,7 +2,7 @@
 div
   q-card.q-ma-md.q-pa-md
     h6.no-margin.text-weight-light.text-grey-9 PowerUp Balance
-    small Deposit EOS to pre-purchase the auto-powerup service. Automatic PowerUp costs will be deducted from your balance. (Powerup cost + 1% fee)
+    small Deposit EOS to pre-purchase the auto-powerup service. Automatic PowerUp costs will be deducted from your balance. (Powerup cost + 1% fee)   
     .row.q-ma-md
       .col-auto.q-mr-lg(style="width:160px")
         small Remaining Balance
@@ -40,6 +40,17 @@ div
         )
     //- div {{ auth.userData }}
     //- div {{auth.anchor.auth.toJSON()}}
+    .row.q-ma-sm.justify-center
+      q-btn(
+          label="Your Latest Powerup history on-chain",
+          flat,
+          color="teal",
+          :disable="!depositValid",
+          type="a",
+          :href="historyurl",
+          target="__blank",
+          style="height: 30px; width:321px;"
+        )
 </template>
 
 <style>
@@ -137,6 +148,10 @@ export default {
     depositValid() {
       return true;
     },
+    historyurl() {
+      // @ts-ignore
+      return "https://eos.eosq.eosnation.io/search?blockCount=30000000&cursor=&q=receiver%3Aeospowerupio%20data.payer%3A" + this.auth.userData.actor + "%20action%3Aautopowerup&sort=desc&startBlock=0&withReversible=true"
+    }
   },
   watch: {
     "auth.userData.actor"(val) {
