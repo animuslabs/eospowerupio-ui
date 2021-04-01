@@ -30,17 +30,17 @@
           q-item
             q-item-section(avatar)
               q-icon(color="cyan-7" name="bolt")
-            q-item-section There were very important changes to the way EOS blockchain manages it's resources. Learn more about #[a(href="https://eos.io/eos-public-blockchain/powerup-model/") PowerUp]
+            q-item-section There were very important changes to the way EOS blockchain manages its resources. Learn more about #[a(href="https://eos.io/eos-public-blockchain/powerup-model/") PowerUp]
           q-separator
           q-item
             q-item-section(avatar)
               q-icon(color="cyan-7" name="bolt")
-            q-item-section Want more power? Register accounts to receive automatic PowerUps (and RAM) based on usage. Check out #[a(href="/auto") Auto PowerUp]
+            q-item-section Want more power? Register accounts to receive automatic PowerUp (and RAM) based on usage. Check out #[a(href="/auto") Auto PowerUp]
           q-separator
           q-item
             q-item-section(avatar)
               q-icon(color="cyan-7" name="bolt")
-            q-item-section Free powerups are funded by community donations. To make a donation you can send any amount of EOS to "eospowerupio" account with the memo "donation"
+            q-item-section Free PowerUp's are funded by community donations. To make a donation you can send any amount of EOS to "eospowerupio" account with the memo "donation"
 </template>
 
 <style>
