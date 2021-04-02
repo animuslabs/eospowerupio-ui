@@ -4,7 +4,7 @@ div
     h5.no-margin.text-weight-light.text-grey-9 PowerUp Balance
     q-separator.q-pa-sm.bg-white
     p.no-margin.text-weight-light.text-grey-9 Deposit EOS to pre-purchase the Auto-PowerUp service.
-    p.no-margin.text-weight-light.text-grey-9 Auto-PowerUp costs will be deducted from your balance (cost + 1% fee).
+    p.no-margin.text-weight-light.text-grey-9 Auto-PowerUp costs will be deducted from your balance + 1% fee.
     q-separator.q-pa-sm.bg-white
     .row.q-ma-md
       .col-auto.q-mr-lg(style="width:160px")
@@ -19,11 +19,11 @@ div
       .col-auto(style="width:160px")
         small Pre-Pay EOS
         q-input(
-          filled,
+          outlined
           v-model="depositQuantity",
           suffix="EOS",
           type="number"
-        ).shadow-1
+        )
         q-btn.full-width(
           label="Add funds", 
           flat,
@@ -32,28 +32,26 @@ div
           icon="add",
           @click="addFunds()"
         )
+      q-btn(
+        label="max",
+        flat,
+        color="teal",
+        :disable="!depositValid",
+        @click="setMaxDeposit()",
+        style="margin-top: 22px; height: 55px; width:50px;"
+      )
       .col-auto
-        q-btn(
-          label="max",
-          flat,
-          color="teal",
-          :disable="!depositValid",
-          @click="setMaxDeposit()",
-          style="margin-top: 22px; height: 55px; width:50px;"
-        )
-    //- div {{ auth.userData }}
-    //- div {{auth.anchor.auth.toJSON()}}
+
     .row.q-ma-sm.justify-center
       q-btn(
-          label="Your Latest Powerup history on-chain",
+          label="auto-powerup history",
+          icon="list"
           flat,
           color="teal",
-          :disable="!depositValid",
           type="a",
           :href="historyurl",
           target="__blank",
-          style="height: 30px; width:321px;"
-        )
+          ).full-width
 </template>
 
 <style>

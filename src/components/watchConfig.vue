@@ -38,29 +38,29 @@ q-dialog(ref="dialog", @hide="onDialogHide" :maximized="$q.platform.is.mobile")
               q-input(
                 v-model="config.watch_data.min_cpu_ms",
                 style="width: 60px",
-                filled
-              ).shadow-1
+                outlined
+              )
           .col-sm-6.col-md-3.q-pr-md.q-pt-sm.q-pl-md
             small PowerUp (ms)
               q-input(
                 v-model="config.watch_data.powerup_quantity_ms",
                 style="width: 60px",
-                filled
-              ).shadow-1
+                outlined
+              )
           .col-sm-6.col-md-3.q-pr-md.q-pt-sm.q-pl-md
             small min RAM (KB)
               q-input(
                 v-model="config.watch_data.min_kb_ram",
                 style="width: 60px",
-                filled
-              ).shadow-1
+                outlined 
+              )
           .col-sm-6.col-md-3.q-pr-md.q-pt-sm.q-pl-md
             small buy RAM (KB)
               q-input(
                 v-model="config.watch_data.buy_ram_quantity_kb",
                 style="width: 60px",
-                filled
-              ).shadow-1
+                outlined
+              )
     q-card-actions(align="right")
       q-btn(color="grey", label="Cancel", @click="onCancelClick", flat)
       q-btn(color="cyan", :label="actionLabelName", @click="registerDevice", outline)
