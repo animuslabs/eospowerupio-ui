@@ -41,7 +41,6 @@ div
         style="margin-top: 22px; height: 55px; width:50px;"
       )
       .col-auto
-
     .row.q-ma-sm.justify-center
       q-btn(
           label="auto-powerup history",

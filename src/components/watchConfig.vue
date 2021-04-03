@@ -32,7 +32,6 @@ q-dialog(ref="dialog", @hide="onDialogHide" :maximized="$q.platform.is.mobile")
         .row.q-mt-md
           small Manual Config
         .row.q-ma-sm.justify-center
-
           .col-sm-6.col-md-3.q-pr-md.q-pt-sm.q-pl-md
             small min CPU (ms)
               q-input(
