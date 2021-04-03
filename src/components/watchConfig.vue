@@ -10,11 +10,11 @@ q-dialog(ref="dialog", @hide="onDialogHide" :maximized="$q.platform.is.mobile")
             .row
               small Account Name
             .row
-              q-input(v-model="accountName" :readonly="setupData.freezeName")
+              q-input(v-model="accountName" :readonly="setupData.freezeName" outlined)
             div(style="height:10px;").q-lt-sm
           .div.justify-center
             .row
-              small Quick Preset 
+              small Quick Preset
             .row.justify-center
               .row.justify-center(style="width:300px")
                 .row.justify-center.full-width
@@ -22,7 +22,7 @@ q-dialog(ref="dialog", @hide="onDialogHide" :maximized="$q.platform.is.mobile")
                     small.capitalize basic
                   q-separator(vertical inset color="grey-5" size="2px")
                   .col.text-orange-7.q-ma-xs.q-pa-sm.text-center(style="text-transform: uppercase;")
-                    small power 
+                    small power
                   q-separator(vertical inset color="grey-5" size="2px")
                   .col.text-red.q-ma-xs.q-pa-sm.text-center(style="text-transform: uppercase;")
                     small advanced
@@ -51,7 +51,7 @@ q-dialog(ref="dialog", @hide="onDialogHide" :maximized="$q.platform.is.mobile")
               q-input(
                 v-model="config.watch_data.min_kb_ram",
                 style="width: 60px",
-                outlined 
+                outlined
               )
           .col-sm-6.col-md-3.q-pr-md.q-pt-sm.q-pl-md
             small buy RAM (KB)
@@ -87,19 +87,22 @@ export default {
       if (this.setupData.freezeName) return 'edit'
       else return 'add'
     },
-    accountName: {
-      // @ts-ignore
+    _accountName: {
       get(data) {
-        if(!data) return ""
+        if(!data) return "";
         return this.rawAccountName.toLowerCase();
       },
       set(data) {
-        if(!data) data = ""
-        // @ts-ignore
-        this.rawAccountName = data.toLowerCase();
-        // @ts-ignore
-        this.config.watch_data.account = data.toLowerCase();
+        if(!data) data="";
+        this.rawAccountName=data.toLowerCase();
+        this.config.watch_data.account=data.toLowerCase();
       },
+    },
+    get accountName() {
+      return this._accountName;
+    },
+    set accountName(value) {
+      this._accountName=value;
     },
   },
   watch: {
