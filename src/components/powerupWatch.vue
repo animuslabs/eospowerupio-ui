@@ -1,14 +1,15 @@
 <template lang="pug">
 div
   q-card.q-ma-md.q-pa-md
-    h6.no-margin.text-weight-light.text-grey-9 Watchlist
-    small Accounts in your watchlist receive automatic resources dynamically based on live usage. You can watch as many accounts as you would like.
+    h5.no-margin.text-weight-light.text-grey-9 Watchlist
+    q-separator(spaced="3px")
+    p.no-margin.text-weight-light.text-grey-9 Accounts in your watchlist receive automatic resources dynamically based on live usage. You can watch as many accounts as you would like.
     q-list
       div(v-for="wAcct of watchAccounts", :key="wAcct.account")
-        .box.q-ma-sm.q-mb-lg.q-mb-log
+        .box.q-mb-md.q-mb-log
           .row.items-center.justify-between.full-width.bg-grey-8.q-mt-md
             .col-auto.q-ml-md
-              h6.text-weight-light.text-white.q-mt-xs.q-mb-xs.gt-sm {{ wAcct.account }}
+              div.text-weight-light.text-white.q-mt-xs.q-mb-xs.gt-sm(style="font-size:19px;") {{ wAcct.account }}
               div.text-white.q-mt-xs.q-mb-xs.lt-md(style="font-size:17px;") {{ wAcct.account }}
             .col-auto
               .row.justify-end.full-width(style="vertical-align: middle;")
@@ -36,11 +37,11 @@ div
                   stretch,
                   stack,
                   @click="pauseWatchAccount(wAcct)"
-                ) 
+                )
                 q-btn(
                   style="padding-top:5px;"
                   padding="sm"
-                  
+
                   color="grey-1"
                   v-if="!wAcct.active",
                   icon="visibility",
@@ -50,7 +51,7 @@ div
                   stretch,
                   stack,
                   @click="activateWatchAccount(wAcct)"
-                ) 
+                )
                 q-btn(
                   style="padding-top:5px;"
                   padding="sm"
@@ -64,7 +65,7 @@ div
                   @click="deleteWatchAccount(wAcct.account)"
                 )
           q-separator(size="1px", color="grey-9")
-          .row.justify-center.full-width.q-pb-sm.q-mb-sm
+          .row.justify-center.full-width.q-pb-sm.q-mb-sm.text-grey-9
             .col-sm-6.col-md-3.q-pr-md.q-pt-sm.q-pl-md
               small min CPU (ms)
               div {{ wAcct.min_cpu_ms }}

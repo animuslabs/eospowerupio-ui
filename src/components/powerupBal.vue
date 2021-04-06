@@ -2,10 +2,11 @@
 div
   q-card.q-ma-md.q-pa-md
     h5.no-margin.text-weight-light.text-grey-9 PowerUp Balance
-    q-separator.q-pa-sm.bg-white
+    q-separator(spaced="3px")
     p.no-margin.text-weight-light.text-grey-9 Deposit EOS to pre-purchase the Auto-PowerUp service.
     p.no-margin.text-weight-light.text-grey-9 Auto-PowerUp costs will be deducted from your balance + 1% fee.
-    q-separator.q-pa-sm.bg-white
+    //- q-separator(inset spaced="5px")
+    //- q-separator.q-pa-sm.bg-white
     .row.q-ma-md
       .col-auto.q-mr-lg(style="width:160px")
         small Remaining Balance
@@ -25,7 +26,7 @@ div
           type="number"
         )
         q-btn.full-width(
-          label="Add funds", 
+          label="Add funds",
           flat,
           color="teal",
           :disable="!depositValid",
