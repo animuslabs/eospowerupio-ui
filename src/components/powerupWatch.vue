@@ -190,7 +190,7 @@ export default {
     this.getWatchlist();
     this.interval = setInterval(() => {
       this.getWatchlist();
-    }, 5000);
+    }, 2000);
   },
   destroyed() {
     clearInterval(this.interval);

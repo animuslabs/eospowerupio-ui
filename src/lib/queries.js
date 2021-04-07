@@ -1,4 +1,4 @@
-const { rpc } = require('./eosjs')()
+const { rpc } = require('./eosjs')(null,'https://api.eosn.io/')
 const code = 'eospowerupio'
 /** @type {any} */
 const queries = {
