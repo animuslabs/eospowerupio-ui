@@ -1,5 +1,6 @@
 const { rpc } = require('./eosjs')()
 const code = 'eospowerupio'
+/** @type {any} */
 const queries = {
   async getAccount(accountName){
     if (!accountName) return false
@@ -18,7 +19,7 @@ const queries = {
     return result
   },
   async getWatchlist(owner) {
-    const result = (await rpc.get_table_rows({ code, table: 'watchlist', scope: owner })).rows
+    const result = (await rpc.get_table_rows({ code, table: 'watchlist', scope: owner,limit:-1 })).rows
     return result.map(el => {
       el.active = el.active == 1 ? true : false
       return el
