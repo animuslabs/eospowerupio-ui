@@ -3,7 +3,9 @@ div
   q-card.q-ma-md.q-pa-md
     h5.no-margin.text-weight-light.text-grey-9 Watchlist
     q-separator(spaced="3px")
-    p.no-margin.text-weight-light.text-grey-9 Accounts in your watchlist receive automatic resources dynamically based on live usage. You can watch as many accounts as you would like.
+    p.no-margin.text-weight-light.text-grey-9 Accounts in your watchlist receive automatic resources dynamically based on live usage.
+    p.no-margin.text-weight-light.text-grey-9 The default presets work well for most accounts. Advanced users should monitor usage and tweak settings to find optimal values.
+    p.no-margin.text-weight-light.text-grey-9 NET is handled automatically based on your CPU settings.
     q-list
       div(v-for="wAcct of watchAccounts", :key="wAcct.account")
         .box.q-mb-md.q-mb-log
