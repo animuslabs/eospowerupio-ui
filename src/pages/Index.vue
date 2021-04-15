@@ -132,6 +132,10 @@ export default {
           message: `You can claim again in 12 hours. `,
         });
       }
+
+      // @ts-ignore
+      window.mixpanel.track("Free Powerup", {account:this.accountInput.trim()});
+
     },
   },
   watch:{
