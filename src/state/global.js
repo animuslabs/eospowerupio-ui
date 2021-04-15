@@ -6,6 +6,9 @@ import queries from '../lib/queries'
 import { Notify } from 'quasar'
 import * as scatter from '../lib/scatter'
 import Vue from 'vue'
+var mixpanel = require('mixpanel-browser');
+mixpanel.init("9ff1909bddc4e74db9192b48f0149941");
+window.mixpanel = mixpanel
 const state = {
   global: {
     data: "hello"
@@ -35,7 +38,7 @@ const state = {
           state.auth.saveAuthMethod('scatter')
         },
         async logout() {
-          // @ts-ignore 
+          // @ts-ignore
           await state.auth.scatterJS.logout()
           state.auth.resetUserData()
         },

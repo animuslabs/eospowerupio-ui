@@ -20,6 +20,7 @@
     "crc-32": "^1.2.0",
     "eosio-uri": "^0.0.5",
     "eosjs": "^21.0.3",
+    "mixpanel-browser": "^2.41.0",
     "quasar": "^1.0.0",
     "ual-anchor": "^1.0.5"
   },

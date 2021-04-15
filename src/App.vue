@@ -8,6 +8,8 @@
 import {state} from "./state/global"
 import Vue from 'vue'
 
+
+
 // const anchor = require("./lib/anchor")
 export default {
   name: "App",
