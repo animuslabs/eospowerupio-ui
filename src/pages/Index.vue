@@ -105,6 +105,7 @@ export default {
       // userData:auth.userData
     };
   },
+
   mounted(){
       if(this.auth.userData.actor) this.accountInput = this.auth.userData.actor
       else this.accountInput = null

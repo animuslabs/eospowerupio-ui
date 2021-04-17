@@ -10,6 +10,7 @@
     "build": "quasar build --modern && cp _redirects dist/spa"
   },
   "dependencies": {
+    "@dfuse/client": "^0.3.20",
     "@quasar/extras": "^1.0.0",
     "@scatterjs/core": "^2.7.54",
     "@scatterjs/eosjs2": "^1.5.36",
@@ -20,6 +21,7 @@
     "crc-32": "^1.2.0",
     "eosio-uri": "^0.0.5",
     "eosjs": "^21.0.3",
+    "javascript-time-ago": "^2.3.4",
     "mixpanel-browser": "^2.41.0",
     "quasar": "^1.0.0",
     "ual-anchor": "^1.0.5"

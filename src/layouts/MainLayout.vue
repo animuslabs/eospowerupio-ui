@@ -43,6 +43,7 @@ q-layout(padding)
     q-separator(size="4px", color="cyan")
   div.bg-grey-3(style="padding-top: 53px").shadow-1
     q-tabs.text-cyan-8(v-model="tab", inline-label)
+      q-tab(name="stats",icon="query_stats")
       q-tab(name="free", label="Free", icon="bolt")
       q-tab(name="auto", label="Auto", icon="visibility")
 
