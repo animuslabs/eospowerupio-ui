@@ -59,7 +59,7 @@ const queries = {
   getRecentActions(){
     const vars = {
       "query": "receiver:'eospowerupio' (action:'logpowerup' OR action:'logbuyram')",
-      "low":-1000
+      "low":-300
     }
 
     const streamQuery = `subscription ($query: String!, $low: Int64) {

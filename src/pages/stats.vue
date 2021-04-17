@@ -99,7 +99,7 @@ export default {
   },
   async created(){
     this.stats = await queries.getStats()
-    this.listInterval = setInterval(this.updateList,200)
+    this.listInterval = setInterval(this.updateList,1000)
     this.interval = setInterval(async()=>{
           this.stats = await queries.getStats()
     },300000)
