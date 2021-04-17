@@ -4,7 +4,7 @@ q-layout(padding)
     q-toolbar
       q-toolbar-title
         .row.items-center
-          q-img.on-left(src="/icons/favicon-128x128.png", width="20px")
+          q-img.on-left(src="/icons/favicon-128x128.png", width="25px")
           small EOS PowerUp
 
       q-btn(
@@ -61,7 +61,7 @@ q-layout(padding)
                 href="https://stats.boid.com/d/U3aaAhwZz/eos-resources?orgId=1&from=now-1h&to=now",
                 target="_blank"
                 ) Resources stats
-        q-separator(size="20px", color="grey-9")  
+        q-separator(size="20px", color="grey-9")
         .row.justify-center
             q-btn.align-right(
               flat,
@@ -177,7 +177,7 @@ export default {
     },
   },
   watch: {
-    
+
     tab(val) {
       if (this.$route.name == val) return;
       this.$router.push("/" + val);
