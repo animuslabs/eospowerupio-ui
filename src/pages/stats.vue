@@ -85,9 +85,9 @@ export default {
   },
   async created(){
     this.stats = await queries.getStats()
-    // this.interval = setInterval(async()=>{
-    //       this.stats = await queries.getStats()
-    // },300000)
+    this.interval = setInterval(async()=>{
+          this.stats = await queries.getStats()
+    },300000)
     // const {stream,emitter} = await queries.getRecentActions()
     // this.stream = stream
     // emitter.on('data',data=>this.events.unshift(data))
