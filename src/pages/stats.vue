@@ -23,7 +23,7 @@ div
       h5.no-margin.text-weight-light.text-grey-9 Recent Actions
 
       q-spinner.on-right
-    q-list(style="max-height:50vh; overflow: scroll; max-width:800px; ").full-width
+    q-list(style="max-height:90vh; overflow: scroll; max-width:800px; ").full-width
       transition-group(enter-active-class="animated slideInTop " name="list")
         q-card.q-ma-md.q-pa-md(v-for="item of displayEvents" :key="item.trace.id").q-ma-md
           .row.items-center

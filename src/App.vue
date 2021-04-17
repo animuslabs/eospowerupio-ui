@@ -1,5 +1,5 @@
 <template lang="pug">
-.q-app
+.q-app.bg-grey-1
   router-view
 </div>
 </template>
