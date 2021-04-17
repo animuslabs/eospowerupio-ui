@@ -25,7 +25,7 @@ div
       q-spinner.on-right
     q-list(style="max-height:50vh; overflow: scroll; max-width:800px; ").full-width
       transition-group(enter-active-class="animated slideInTop " name="list")
-        q-card.q-ma-md.q-pa-md(v-for="item of events" :key="item.trace.id").q-ma-md
+        q-card.q-ma-md.q-pa-md(v-for="item of displayEvents" :key="item.trace.id").q-ma-md
           .row.items-center
             .col-auto
               div(v-for="(el,key) of item.trace.matchingActions[0].json")
@@ -55,15 +55,14 @@ TimeAgo.addDefaultLocale(en)
 
 const timeAgo = new TimeAgo('en-US')
 
-
-
-
 export default {
   data(){
     return {
       stream:null,
       interval:null,
+      listInterval:null,
       events:[],
+      displayEvents:[],
       stats:{
         owners:0,
         totalWatched:0
@@ -71,6 +70,21 @@ export default {
     }
   },
   methods:{
+    updateList(){
+      if(this.events.length>0) {
+        console.log(this.events)
+        const min = Math.min(...this.events.map(el =>el.trace.block.num))
+        let index
+        const found = this.events.find((el,i)=>{
+          if( el.trace.block.num == min) {
+            index = i
+            return true
+          }
+        })
+        this.displayEvents.unshift(found)
+        this.events.splice(index,1)
+      }
+    },
     showTx(id){
       return 'https://bloks.io/transaction/'+id
     },
@@ -85,12 +99,10 @@ export default {
   },
   async created(){
     this.stats = await queries.getStats()
+    this.listInterval = setInterval(this.updateList,200)
     this.interval = setInterval(async()=>{
           this.stats = await queries.getStats()
     },300000)
-    // const {stream,emitter} = await queries.getRecentActions()
-    // this.stream = stream
-    // emitter.on('data',data=>this.events.unshift(data))
     const {vars,streamQuery} = queries.getRecentActions()
     dfuse.graphql(streamQuery,(message,stream)=>{
       if(message.type == 'data') {
@@ -103,6 +115,7 @@ export default {
   },
   beforeDestroy(){
     clearInterval(this.interval)
+    clearInterval(this.listInterval)
     this.stream.close()
   }
 }
@@ -110,6 +123,6 @@ export default {
 
 <style>
 .list-move {
-  transition: transform .5s;
+  transition: transform .2s;
 }
 </style>

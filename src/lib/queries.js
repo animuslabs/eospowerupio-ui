@@ -64,7 +64,7 @@ const queries = {
 
     const streamQuery = `subscription ($query: String!, $low: Int64) {
       searchTransactionsForward(query: $query, lowBlockNum: $low) {
-          trace { id block{timestamp} matchingActions{ json }}
+          trace { id block{timestamp,num} matchingActions{ json }}
       }
     }`
     return {vars,streamQuery}
