@@ -4,9 +4,9 @@ div
     h5.no-margin.text-weight-light.text-grey-9 PowerUp Balance
     q-separator(spaced="3px")
     p.no-margin.text-weight-light.text-grey-9 Deposit EOS to pre-purchase the Auto-PowerUp service.
-    p.no-margin.text-weight-light.text-grey-9 Auto-PowerUp and RAM costs will be deducted from your balance + 2% fee.
-    p.no-margin.text-weight-light.text-grey-9 Each PowerUp/RAM purchase performed also incurs a static 0.0002 EOS fee.
-    p.no-margin.text-weight-light.text-grey-9 You can optimize fees by tweaking your settings to reduce wasted CPU or excessive numbers of PowerUps per day.
+    p.no-margin.text-weight-light.text-grey-9 Auto-PowerUp and RAM costs will be deducted from your balance with a 2% service fee + 0.0002 EOS per action.
+    p.no-margin.text-weight-light.text-grey-9 The minimum total fee per action is 0.0005 EOS.
+    p.no-margin.text-weight-light.text-grey-9 High usage accounts can reduce fees by using the advanced preset or manually tweaking settings.
     //- q-separator(inset spaced="5px")
     //- q-separator.q-pa-sm.bg-white
     .row.q-ma-md
