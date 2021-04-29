@@ -5,17 +5,21 @@ import ScatterJS from '@scatterjs/core';
 import ScatterEOS from '@scatterjs/eosjs2';
 import { JsonRpc, Api } from 'eosjs';
 
-
-
-
 async function login() {
 
   try {
     ScatterJS.plugins(new ScatterEOS());
+    // const network = ScatterJS.Network.fromJson({
+    //   blockchain: 'eos',
+    //   chainId: 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
+    //   host: 'eos.greymass.com',
+    //   port: 443,
+    //   protocol: 'https'
+    // });
     const network = ScatterJS.Network.fromJson({
-      blockchain: 'eos',
-      chainId: 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
-      host: 'eos.greymass.com',
+      blockchain: 'kylin',
+      chainId: '5fff1dae8dc8e2fc4d5b23b2c7665c97f9e9d8edf2b6485a86ba311c25639191',
+      host: 'kylin.eosn.io',
       port: 443,
       protocol: 'https'
     });

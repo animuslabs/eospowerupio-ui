@@ -7,8 +7,6 @@ div
     p.no-margin.text-weight-light.text-grey-9 Auto-PowerUp and RAM costs will be deducted from your balance with a 2% service fee + 0.0002 EOS per action.
     p.no-margin.text-weight-light.text-grey-9 The minimum total fee per action is 0.0005 EOS.
     p.no-margin.text-weight-light.text-grey-9 High usage accounts can reduce fees by using the advanced preset or manually tweaking settings.
-    //- q-separator(inset spaced="5px")
-    //- q-separator.q-pa-sm.bg-white
     .row.q-ma-md
       .col-auto.q-mr-lg(style="width:160px")
         small Remaining Balance
@@ -57,37 +55,7 @@ div
 </template>
 
 <style>
-ul ul {
-  padding-left: 15px;
-}
-.powerupbtn {
-  background: linear-gradient(
-    to right,
-    rgb(255, 217, 0) 20%,
-    rgb(255, 234, 0) 40%,
-    rgb(255, 225, 0) 60%,
-    rgb(242, 255, 0) 80%
-  );
-  background-size: 200% auto;
 
-  color: #000;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: powerupbtn 1s linear infinite;
-}
-
-@keyframes powerupbtn {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
 </style>
 
 <script>
