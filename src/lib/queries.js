@@ -4,27 +4,26 @@ const code = 'eospowerupio'
 import dfuse from '../lib/dfuse'
 
 
-class EventEmitter{
-    constructor(){
-        this.callbacks = {}
-    }
+class EventEmitter {
+  constructor() {
+    this.callbacks = {}
+  }
 
-    on(event, cb){
-        if(!this.callbacks[event]) this.callbacks[event] = [];
-        this.callbacks[event].push(cb)
-    }
+  on(event, cb) {
+    if (!this.callbacks[event]) this.callbacks[event] = [];
+    this.callbacks[event].push(cb)
+  }
 
-    emit(event, data){
-        let cbs = this.callbacks[event]
-        if(cbs){
-            cbs.forEach(cb => cb(data))
-        }
+  emit(event, data) {
+    let cbs = this.callbacks[event]
+    if (cbs) {
+      cbs.forEach(cb => cb(data))
     }
+  }
 }
 
 
 const queries = {
-  hello:'fart',
   async getAccount(accountName) {
     if (!accountName) return false
     const result = (await rpc.get_account(accountName))
@@ -50,16 +49,16 @@ const queries = {
   },
   async getStats() {
     const result = await ax.get('https://api.eospowerup.io/stats').catch(err => console.error(err.toString()))
-    if(result) return result.data
+    if (result) return result.data
     else return {
-      owners:0,
-      watchAccounts:0
+      owners: 0,
+      watchAccounts: 0
     }
   },
-  getRecentActions(){
+  getRecentActions() {
     const vars = {
       "query": "receiver:'eospowerupio' (action:'logpowerup' OR action:'logbuyram')",
-      "low":-500
+      "low": -500
     }
 
     const streamQuery = `subscription ($query: String!, $low: Int64) {
@@ -67,7 +66,7 @@ const queries = {
           trace { id block{timestamp,num} matchingActions{ json }}
       }
     }`
-    return {vars,streamQuery}
+    return { vars, streamQuery }
   }
 }
 

@@ -101,7 +101,7 @@ export default {
       this.loadingPowerup = true
       let message
       try {
-        message = await ax.get("https://api.eospowerup.io/freePowerup/" + this.accountInput.trim())
+        message = await ax.get("https://api.eospowerup.io/freePowerup/" + this.accountInput)
       } catch (error) {
         this.$q.dialog({
           title: "Error Claiming Powerup",
@@ -119,11 +119,12 @@ export default {
       }
 
       // @ts-ignore
-      window.mixpanel.track("Free Powerup", { account: this.accountInput.trim() })
+      window.mixpanel.track("Free Powerup", { account: this.accountInput })
     }
   },
   watch: {
     async accountInput(data) {
+      if (!data) return
       const valid = util.validateName(data)
       if (valid) {
         const exists = await query.getAccount(this.accountInput.trim().toLowerCase()).catch(err => {
