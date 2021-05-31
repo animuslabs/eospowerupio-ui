@@ -14,26 +14,35 @@ div
             div PowerUp
   .row.justify-center
     .text-grey-9(style="max-width: 400px")
-      q-list
+      q-list(separator)
+        q-item
+          q-item-section(avatar)
+            q-icon(color="yellow-8" name="info")
+          div EOS PowerUp Telgram Bot is now available for testing. Try the #[a(href="https://t.me/eospowerupbot" target="_blank") Telegram Bot]
+        q-item
+          q-item-section(avatar)
+            q-icon(color="yellow-8" name="info")
+          div eospowerup.io has received funding through the Eden on EOS process. Read about the #[a(href="https://crypto.writer.io/p/edenos-alpha-test-results-and-experiences" target="_blank") Eden on EOS Trial #1]
+        //- q-separator
         q-item
           q-item-section(avatar)
             q-icon(color="cyan-7" name="bolt")
-          q-item-section EOS accounts can claim one free PowerUp every 12 hours.
-        q-separator
+          q-item-section EOS accounts can claim two PowerUps every 24 hours.
+        //- q-separator
         q-item
           q-item-section(avatar)
             q-icon(color="cyan-7" name="bolt")
-          q-item-section There were very important changes to the way EOS blockchain manages its resources. Learn more about #[a(href="https://eos.io/eos-public-blockchain/powerup-model/") PowerUp]
-        q-separator
+          div There were very important changes to the way EOS blockchain manages its resources. Learn more about #[a(href="https://eos.io/eos-public-blockchain/powerup-model/") PowerUp]
+        //- q-separator
         q-item
           q-item-section(avatar)
             q-icon(color="cyan-7" name="bolt")
-          q-item-section Want more power? Register accounts to receive automatic PowerUp (and RAM) based on usage. Check out #[a(href="/auto") Auto PowerUp]
-        q-separator
+          div Want more power? Register accounts to receive automatic PowerUp (and RAM) based on usage. Check out #[a(href="/auto") Auto PowerUp]
+        //- q-separator
         q-item
           q-item-section(avatar)
             q-icon(color="cyan-7" name="bolt")
-          q-item-section Free PowerUp's are funded by community donations. To make a donation you can send any amount of EOS to "eospowerupio" account with the memo "donation"
+          div Free PowerUp's are funded by community donations. To make a donation you can send any amount of EOS to "eospowerupio" account with the memo "donation"
 </template>
 
 <style>
