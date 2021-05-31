@@ -48,7 +48,7 @@ import TimeAgo from "javascript-time-ago"
 // @ts-ignore
 import en from "javascript-time-ago/locale/en"
 // @ts-ignore
-TimeAgo.addDefaultLocale(en)
+// TimeAgo.addDefaultLocale(en)
 
 const timeAgo = new TimeAgo("en-US")
 

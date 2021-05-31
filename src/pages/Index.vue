@@ -72,6 +72,14 @@ const globalState = Vue.observable(state)
 import * as util from "../lib/util.js"
 import { debounce } from "quasar"
 import query from "../lib/queries.js"
+// @ts-ignore
+import TimeAgo from "javascript-time-ago"
+// @ts-ignore
+import en from "javascript-time-ago/locale/en"
+// @ts-ignore
+// TimeAgo.addDefaultLocale(en)
+
+const timeAgo = new TimeAgo("en-US")
 
 // console.log(state.auth.userData)
 import ax from "axios"
@@ -108,13 +116,37 @@ export default {
           message: `Try again later.`
         })
       }
-
       this.loadingPowerup = false
-      if (message.data.result) {
+      if (message.data?.result) {
+        const result = message.data.result
         const txid = message.data.result
+        if (result.status == "success") {
+          this.$q.dialog({
+            title: "Claimed Free Powerup",
+            message: `You can claim up to two free powerups per account per day.`
+          })
+        } else if (result.status == "reachedFreeQuota") {
+          this.$q.dialog({
+            title: "Free Quota Reached",
+            // @ts-ignore
+            message: `This account has already received two free PowerUps in the past 24 hours. Next free powerup can be claimed ${timeAgo.format(new Date(result.nextPowerup))}`
+          })
+        } else if (result.stats == "error") {
+          this.$q.dialog({
+            title: "Error Claiming Powerup",
+            // @ts-ignore
+            message: `${JSON.stringify(result.errors, null, 2)}`
+          })
+        } else {
+          this.$q.dialog({
+            title: "Error Claiming Powerup",
+            message: "Try again later."
+          })
+        }
+      } else {
         this.$q.dialog({
-          title: "Claimed Free Powerup",
-          message: `You can claim again in 12 hours. `
+          title: "Error Claiming Powerup",
+          message: "Try again later."
         })
       }
 
