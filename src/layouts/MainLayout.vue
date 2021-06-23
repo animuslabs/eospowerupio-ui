@@ -32,7 +32,7 @@ q-layout(padding)
     .row.q-pa-md.bg-grey-9
       .col
         .row.justify-center
-          q-btn(color="cyan-8" flat href="https://stats.boid.com/d/U3aaAhwZz/eos-resources?orgId=1&from=now-1h&to=now" size="md" target="_blank" type="a") Resources stats
+          q-btn(color="cyan-8" flat href="https://stats.boid.com/d/X2YaUPRnk/eospowerup?orgId=1&from=now-7d&to=now" size="md" target="_blank" type="a") Resources stats
         q-separator(color="grey-9" size="20px")
         .row.justify-center
           q-btn.align-right(flat href="https://twitter.com/eospowerup" target="_blank" type="a")

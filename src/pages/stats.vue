@@ -3,29 +3,41 @@ div
   .row.justify-center.q-mt-md
     h5.no-margin.text-weight-light.text-grey-9 Global Stats
   .row.justify-center
+    q-btn(color="teal" flat href="https://stats.boid.com/d/X2YaUPRnk/eospowerup?orgId=1&from=now-7d&to=now" icon="show_chart" label="charts" target="_blank" type="a")
+  .row.justify-center
     .row.justify-center(style="max-width: 800px")
       .col-auto(style="max-width: 350px")
-        q-card.q-ma-md.q-pa-md
-          h5.no-margin.text-weight-light.text-grey-9 Owner Accounts
+        q-card.q-ma-sm.q-pa-md(bordered flat)
+          h6.no-margin.text-weight-light.text-grey-9 Owner Accounts: #[strong {{ stats.owners }}]
           q-separator(spaced="3px")
           p.no-margin.text-weight-light.text-grey-9(style="min-height: 45px") Accounts with funds deposited and monitoring accounts.
-          .flex.justify-center.q-ma-md
-            h3.no-margin.text-weight-light.text-grey-9 {{ stats.owners }}
       .col-auto(style="max-width: 350px")
-        q-card.q-ma-md.q-pa-md
-          h5.no-margin.text-weight-light.text-grey-9 Watch Accounts
+        q-card.q-ma-sm.q-pa-md(bordered flat)
+          h6.no-margin.text-weight-light.text-grey-9 Watch Accounts: #[strong {{ stats.totalWatched }}]
           q-separator(spaced="3px")
           p.no-margin.text-weight-light.text-grey-9(style="min-height: 45px") Accounts being monitored by the system to receive automated resouces
-          .flex.justify-center.q-ma-md
-            h3.no-margin.text-weight-light.text-grey-9 {{ stats.totalWatched }}
+  .row.justify-center
+    .row.justify-center(style="max-width: 800px")
+      .col-auto(style="max-width: 350px")
+        q-card.q-ma-sm.q-pa-md(bordered flat)
+          h6.no-margin.text-weight-light.text-grey-9 Free PowerUps: #[strong {{ stats.freePowerups24hr }}]
+          q-separator(spaced="3px")
+          p.no-margin.text-weight-light.text-grey-9(style="min-height: 45px") Free PowerUps issued in the past 24 hours.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          //- p.no-margin.text-weight-light.text-grey-9(style="min-height: 45px") {{ stats }}
+      .col-auto(style="max-width: 350px")
+        q-card.q-ma-sm.q-pa-md(bordered flat)
+          h6.no-margin.text-weight-light.text-grey-9 Auto PowerUps: #[strong {{ stats.autopowerups24hr }}]
+          q-separator(spaced="3px")
+          p.no-margin.text-weight-light.text-grey-9(style="min-height: 45px") Auto PowerUps issued in the past 24 hours&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
   .row.justify-center
     .flex.justify-center.full-width.items-center
       h5.no-margin.text-weight-light.text-grey-9 Recent Actions
 
       q-spinner.on-right
-    q-list.full-width(style="max-height: 90vh; overflow: scroll; max-width: 700px")
+    q-list.full-width(style="max-height: 90vh; overflow: scroll; max-width: 715px")
       transition-group(enter-active-class="animated slideInTop " name="list")
-        q-card.q-ma-md.q-pa-md.q-ma-md(:key="item.trace.id" v-for="item of displayEvents")
+        q-card.q-ma-sm.q-pa-md.q-ma-md(:key="item.trace.id" bordered flat v-for="item of displayEvents")
           .row.items-center
             .col-auto
               div(v-for="(el,key) of item.trace.matchingActions[0].json")
