@@ -18,7 +18,7 @@ div
         q-item
           q-item-section(avatar)
             q-icon(color="yellow-8" name="info")
-          div EOS PowerUp Discord Bot is now available for testing. Add Bot to your server. #[a(href="https://discord.com/api/oauth2/authorize?client_id=859243915054678067&permissions=2148006976&scope=bot" target="_blank") Add to server] or #[a(href="https://discord.gg/e6h3NCvcs5") or try the bot] in the Boid server using the "@eospowerupio help" command
+          div EOS PowerUp Discord Bot is now available for testing.#[a(href="https://discord.com/api/oauth2/authorize?client_id=859243915054678067&permissions=2148006976&scope=bot" target="_blank") Add Bot to your server] or #[a(href="https://discord.gg/e6h3NCvcs5") try the bot] in the Boid server by using the "@eospowerupio help" command in any channel.
         q-item
           q-item-section(avatar)
             q-icon(color="yellow-8" name="info")
