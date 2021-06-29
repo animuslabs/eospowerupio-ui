@@ -18,6 +18,10 @@ div
         q-item
           q-item-section(avatar)
             q-icon(color="yellow-8" name="info")
+          div EOS PowerUp Discord Bot is now available for testing. Try the #[a(href="https://discord.com/channels/@me/859276038201409566" target="_blank") Discord Bot]
+        q-item
+          q-item-section(avatar)
+            q-icon(color="yellow-8" name="info")
           div EOS PowerUp Telgram Bot is now available for testing. Try the #[a(href="https://t.me/eospowerupbot" target="_blank") Telegram Bot]
         q-item
           q-item-section(avatar)
