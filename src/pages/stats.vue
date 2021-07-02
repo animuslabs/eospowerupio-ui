@@ -3,7 +3,7 @@ div
   .row.justify-center.q-mt-md
     h5.no-margin.text-weight-light.text-grey-9 Global Stats
   .row.justify-center
-    q-btn(color="teal" flat href="https://stats.boid.com/d/X2YaUPRnk/eospowerup?orgId=1&from=now-7d&to=now" icon="show_chart" label="charts" target="_blank" type="a")
+    q-btn(color="teal" flat href="https://stats.boid.com/d/X2YaUPRnk/eospowerup?orgId=1&from=now-7d&to=now&kiosk=tv" icon="show_chart" label="charts" target="_blank" type="a")
   .row.justify-center
     .row.justify-center(style="max-width: 800px")
       .col-auto(style="max-width: 350px")
