@@ -15,10 +15,10 @@ div
   .row.justify-center
     .text-grey-9(style="max-width: 400px")
       q-list(separator)
-        q-item.bg-orange
+        q-item.bg-amber
           q-item-section(avatar)
             q-icon(color="grey-1" name="info")
-          .text-white Eden on EOS Trial Run 2 is this Saturday, register now to participate: #[a(href="https://docs.google.com/forms/d/e/1FAIpQLSeE92Rc5Y9_YGAshjp3XVWAsgQ7346rlO6woJOuQJjSLYYNIA/viewform" target="_blank") Register.] Participation by the community is very important for the future of EOS. Join the Eden on EOS #[a(href="https://t.me/EdenOSinfo" target="_blank") Telegram Channel] to learn more.
+          .text-grey-10 Eden on EOS Trial Run 2 is this Saturday, register now to participate: #[a(href="https://docs.google.com/forms/d/e/1FAIpQLSeE92Rc5Y9_YGAshjp3XVWAsgQ7346rlO6woJOuQJjSLYYNIA/viewform" target="_blank") Register.] Participation by the community is very important for the future of EOS. Join the Eden on EOS #[a(href="https://t.me/EdenOSinfo" target="_blank") Telegram Channel] to learn more.
         q-item
           q-item-section(avatar)
             q-icon(color="yellow-8" name="info")
