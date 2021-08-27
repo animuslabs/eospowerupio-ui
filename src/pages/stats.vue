@@ -113,14 +113,13 @@ export default {
       this.stats = await queries.getStats()
     }, 300000)
     const { vars, streamQuery } = queries.getRecentActions()
-    dfuse.graphql(
+    this.stream = await dfuse.graphql(
       streamQuery,
       (message, stream) => {
         if (message.type == "data") {
           const data = message.data.searchTransactionsForward
           this.events.unshift(data)
         }
-        this.stream = stream
       },
       { variables: vars }
     )
@@ -128,7 +127,7 @@ export default {
   beforeDestroy() {
     clearInterval(this.interval)
     clearInterval(this.listInterval)
-    this.stream.close()
+    if (this.stream) this.stream.close()
   }
 }
 </script>

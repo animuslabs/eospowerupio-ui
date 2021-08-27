@@ -1,6 +1,24 @@
 <template lang="pug">
 div
   .row.justify-center
+    .col-auto.bg-amber.q-mt-md
+      q-card.q-pa-md.q-ma-xs(bordered flat style="max-width: 600px; min-height: 200px; width: 100vw")
+        .q-pt-sm
+          .row.justify-center
+            div(style="font-size: 20px") 🚀 Get ready for marketing like you've never seen before. 🚀
+          .row.q-pt-md
+            .row
+              .col-auto.q-mr-sm
+                .text-h4 🤩
+              .col
+                div We are now able to offer EOS projects a place to spread their message to the hundreds of active EOS users who visit this site daily.
+            .row.q-pt-md
+              .col-auto.q-mr-sm
+                .text-h4 👊
+              .col
+                div DM us on #[a(href="https://twitter.com/eospowerup") Twitter] or email us "powerup@boid.com" for more information on advertising packages.
+          .row.q-pt-md
+  .row.justify-center
     q-form.q-ma-md(@submit="freePowerup()")
       q-input(clearable color="cyan" input-style="font-size:25px; text-align:center;" label="EOS Account Name" outlined v-model="accountInput")
       .row.justify-center.q-ma-md
