@@ -2,10 +2,10 @@
 div
   .row.justify-center
     .col-auto.bg-amber.q-mt-md
-      q-card.q-pa-md.q-ma-xs(bordered flat style="max-width: 750px; min-height: 200px; width: 100vw")
+      q-card.q-pa-md.q-ma-xs(bordered flat style="max-width: 750px; min-height: 200px; width: 95vw")
         .q-pt-sm
           .row.justify-center.q-mb-md.q-mt-xs
-            div(style="font-size: 25px") Get ready for marketing like you've never seen before.
+            div(style="font-size: 3vw") Get ready for marketing like you've never seen before.
           .row.q-pt-md
             .row
               .col-auto.q-mr-sm
