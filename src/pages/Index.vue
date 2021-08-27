@@ -2,21 +2,21 @@
 div
   .row.justify-center
     .col-auto.bg-amber.q-mt-md
-      q-card.q-pa-md.q-ma-xs(bordered flat style="max-width: 600px; min-height: 200px; width: 100vw")
+      q-card.q-pa-md.q-ma-xs(bordered flat style="max-width: 750px; min-height: 200px; width: 100vw")
         .q-pt-sm
-          .row.justify-center
-            div(style="font-size: 20px") 🚀 Get ready for marketing like you've never seen before. 🚀
+          .row.justify-center.q-mb-md.q-mt-xs
+            div(style="font-size: 25px") Get ready for marketing like you've never seen before.
           .row.q-pt-md
             .row
               .col-auto.q-mr-sm
                 .text-h4 🤩
               .col
-                div We are now able to offer EOS projects a place to spread their message to the hundreds of active EOS users who visit this site daily.
+                div(style="font-size: 18px") We are now able to offer EOS projects a way to spread their message to the hundreds of active EOS users who visit this site and utilize the Telegram bot daily.
             .row.q-pt-md
               .col-auto.q-mr-sm
                 .text-h4 👊
               .col
-                div DM us on #[a(href="https://twitter.com/eospowerup") Twitter] or email us "powerup@boid.com" for more information on advertising packages.
+                div(style="font-size: 18px") DM us on #[a(href="https://twitter.com/eospowerup") Twitter] or email us "powerup@boid.com" for more information on advertising packages.
           .row.q-pt-md
   .row.justify-center
     q-form.q-ma-md(@submit="freePowerup()")
