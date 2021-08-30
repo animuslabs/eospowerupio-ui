@@ -1,7 +1,7 @@
 <template lang="pug">
 div
   .row.justify-center.q-mt-xs.bg-grey-3
-    q-card.cursor-pointer(@click="clickAd()" style="font-size: 30px; max-width: 650px; min-height: 150px; width: 95vw")
+    q-card.cursor-pointer(@click="clickAd()" style="font-size: 30px; max-width: 550px; min-height: 150px; width: 95vw")
       .col-auto
         a(href="https://eostarter.org")
           q-img(src="/eostarter-sm.jpg")
