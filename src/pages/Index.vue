@@ -1,10 +1,11 @@
 <template lang="pug">
 div
   .row.justify-center.q-mt-xs.bg-grey-3
-    q-card.cursor-pointer(@click="clickAd()" style="font-size: 30px; max-width: 750px; min-height: 200px; width: 95vw")
+    q-card.cursor-pointer(@click="clickAd()" style="font-size: 30px; max-width: 750px; min-height: 150px; width: 95vw")
       .col-auto
-        q-img(src="ads/eostarter-sm.png")
-  .row.justify-center.q-mt-lg
+        a(href="sdfsdfsdfsd")
+          q-img(src="ads/eostarter-sm.png")
+  .row.justify-center.q-mt-md
     q-form.q-ma-md(@submit="freePowerup()")
       q-input(clearable color="cyan" input-style="font-size:25px; text-align:center;" label="EOS Account Name" outlined v-model="accountInput")
       .row.justify-center.q-ma-md
@@ -108,6 +109,7 @@ const timeAgo = new TimeAgo("en-US")
 
 // console.log(state.auth.userData)
 import ax from "axios"
+import mixpanel from "mixpanel-browser"
 export default {
   name: "PageIndex",
   data() {
@@ -131,7 +133,9 @@ export default {
   },
   methods: {
     async clickAd() {
-      await openURL("https://eostarter.org")
+      console.log("Ad Clicked")
+      // @ts-ignore
+      window.mixpanel.track("clickAd", "https://eostarter.org")
     },
     async freePowerup() {
       this.loadingPowerup = true
