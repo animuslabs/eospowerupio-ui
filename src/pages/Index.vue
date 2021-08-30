@@ -1,24 +1,10 @@
 <template lang="pug">
 div
-  .row.justify-center
-    .col-auto.bg-amber.q-mt-md
-      q-card.q-pa-md.q-ma-xs(bordered flat style="font-size: 30px; max-width: 750px; min-height: 200px; width: 95vw")
-        .q-pt-sm
-          .row.justify-center.q-mb-md.q-mt-xs
-            div Get ready for marketing like you've never seen before.
-          .row.q-pt-md
-            .row
-              .col-auto.q-mr-sm
-                .text-h4 🤩
-              .col
-                div(style="font-size: 1.2rem") We are now able to offer EOS projects a way to spread their message to the hundreds of active EOS users who visit this site and utilize the Telegram bot daily.
-            .row.q-pt-md
-              .col-auto.q-mr-sm
-                .text-h4 👊
-              .col
-                div(style="font-size: 1.2rem") DM us on #[a(href="https://twitter.com/eospowerup") Twitter] or email us "powerup@boid.com" for more information on advertising packages.
-          .row.q-pt-md
-  .row.justify-center
+  .row.justify-center.q-mt-xs.bg-grey-3
+    q-card.cursor-pointer(@click="clickAd()" style="font-size: 30px; max-width: 750px; min-height: 200px; width: 95vw")
+      .col-auto
+        q-img(src="ads/eostarter-sm.png")
+  .row.justify-center.q-mt-lg
     q-form.q-ma-md(@submit="freePowerup()")
       q-input(clearable color="cyan" input-style="font-size:25px; text-align:center;" label="EOS Account Name" outlined v-model="accountInput")
       .row.justify-center.q-ma-md
@@ -36,6 +22,10 @@ div
         q-item.bg-amber
           q-item-section(avatar)
             q-icon(color="grey-1" name="info")
+          .text-grey-10 Sponsor eospowerup and display your banner ad here. Email us powerup@boid.com for more information on advertising packages.
+        q-item
+          q-item-section(avatar)
+            q-icon(color="yellow-8" name="info")
           .text-grey-10 Eden on EOS Trial Run 2 has completed. See the #[a(href="https://www.reddit.com/r/eos/comments/ombrxe/eden_trial_election_ii_results/" target="_blank") Results]. Join the Eden on EOS #[a(href="https://t.me/EdenOSinfo" target="_blank") Telegram Channel] to learn more.
         q-item
           q-item-section(avatar)
@@ -100,7 +90,7 @@ ul ul {
 </style>
 
 <script>
-import { Dialog } from "quasar"
+import { Dialog, openURL } from "quasar"
 import { state } from "../state/global.js"
 import Vue from "vue"
 const globalState = Vue.observable(state)
@@ -140,6 +130,9 @@ export default {
     else this.accountInput = null
   },
   methods: {
+    async clickAd() {
+      await openURL("https://eostarter.org")
+    },
     async freePowerup() {
       this.loadingPowerup = true
       let message
