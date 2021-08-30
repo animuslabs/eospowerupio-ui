@@ -1,7 +1,7 @@
 <template lang="pug">
 div
   .row.justify-center.q-mt-xs.bg-grey-3
-    q-card.cursor-pointer(@click="clickAd()" style="font-size: 30px; max-width: 750px; min-height: 150px; width: 95vw")
+    q-card.cursor-pointer(@click="clickAd()" style="font-size: 30px; max-width: 650px; min-height: 150px; width: 95vw")
       .col-auto
         a(href="https://eostarter.org")
           q-img(src="/eostarter-sm.jpg")
@@ -153,9 +153,12 @@ export default {
         const result = message.data.result
         const txid = message.data.result
         if (result.status == "success") {
-          this.$q.dialog({
+          Dialog.create({
             title: "Claimed Free Powerup",
-            message: `You can claim up to two free powerups per account per day.`
+            message: `
+              <div>Now that you powered-up your EOS account, power-up your taste buds with these sweet Tartiers NFTs.</div>
+              <div>Available now at <a href="https://eostarter.org">eostarter.org</a></div>`,
+            html: true
           })
         } else if (result.status == "reachedFreeQuota") {
           this.$q.dialog({
