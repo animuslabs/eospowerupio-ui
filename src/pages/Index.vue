@@ -4,7 +4,7 @@ div
     q-card.cursor-pointer(@click="clickAd()" style="font-size: 30px; max-width: 750px; min-height: 150px; width: 95vw")
       .col-auto
         a(href="https://eostarter.org")
-          q-img(src="/ads/eostarter-sm.jpg")
+          q-img(src="/eostarter-sm.jpg")
   .row.justify-center.q-mt-md
     q-form.q-ma-md(@submit="freePowerup()")
       q-input(clearable color="cyan" input-style="font-size:25px; text-align:center;" label="EOS Account Name" outlined v-model="accountInput")
