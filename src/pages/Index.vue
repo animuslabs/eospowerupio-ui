@@ -3,7 +3,7 @@ div
   .row.justify-center.q-mt-xs.bg-grey-3
     q-card.cursor-pointer(style="font-size: 30px; max-width: 550px; min-height: 150px; width: 95vw")
       .col-auto
-        a(@click.prevent="clickAd()" href="https://eostarter.org")
+        a(@click.prevent="clickAd()" href="https://eos.atomichub.io/market?collection_name=eostarternft")
           q-img(src="/eostarter-sm.jpg")
   .row.justify-center.q-mt-md
     q-form.q-ma-md(@submit="freePowerup()")
@@ -136,7 +136,7 @@ export default {
       console.log("Ad Clicked")
       // @ts-ignore
       window.mixpanel.track("clickAd", { site: "https://eostarter.org" })
-      openURL("https://eostarter.org")
+      openURL("https://eos.atomichub.io/market?collection_name=eostarternft")
     },
     async freePowerup() {
       this.loadingPowerup = true
