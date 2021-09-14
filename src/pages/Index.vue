@@ -1,10 +1,10 @@
 <template lang="pug">
 div
   .row.justify-center.q-mt-xs.bg-grey-3
-    q-card.cursor-pointer(style="font-size: 30px; max-width: 550px; min-height: 150px; width: 95vw")
-      .col-auto
-        a(@click.prevent="clickAd()" href="https://eos.atomichub.io/market?collection_name=eostarternft")
-          q-img(src="/eostarter-sm.jpg")
+    //- q-card.cursor-pointer(style="font-size: 30px; max-width: 550px; min-height: 150px; width: 95vw")
+    //-   .col-auto
+    //-     a(@click.prevent="clickAd()" href="https://eos.atomichub.io/market?collection_name=eostarternft")
+    //-       q-img(src="/eostarter-sm.jpg")
   .row.justify-center.q-mt-md
     q-form.q-ma-md(@submit="freePowerup()")
       q-input(clearable color="cyan" input-style="font-size:25px; text-align:center;" label="EOS Account Name" outlined v-model="accountInput")
@@ -157,8 +157,8 @@ export default {
           Dialog.create({
             title: "Claimed Free Powerup",
             message: `
-              <div>Now that you powered-up your EOS account, power-up your taste buds with these sweet Tartiers NFTs.</div>
-              <div>Available now at <a href="https://eostarter.org">eostarter.org</a></div>`,
+              <div>Accounts can claim up to two free powerups per 24hr period.</div>
+              `,
             html: true
           })
         } else if (result.status == "reachedFreeQuota") {
