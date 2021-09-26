@@ -135,7 +135,7 @@ export default {
     async clickAd() {
       console.log("Ad Clicked")
       // @ts-ignore
-      window.mixpanel.track("clickAd", { site: "https://eostarter.org" })
+      window.mixpanel.track("clickAd", { site: "https://t.me/eosbees" })
       openURL("https://t.me/eosbees")
     },
     async freePowerup() {
