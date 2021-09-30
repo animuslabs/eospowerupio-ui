@@ -3,7 +3,7 @@ div
   .row.justify-center.q-mt-xs.bg-grey-3
     q-card.cursor-pointer(style="font-size: 30px; max-width: 550px; min-height: 150px; width: 95vw")
       .col-auto
-        a(@click.prevent="clickAd()" href="https://t.me/eosbees")
+        a(@click.prevent="clickAd()" href="https://discord.gg/zANtKSMBE5")
           q-img(src="/banner_bee.jpg")
   .row.justify-center.q-mt-md
     q-form.q-ma-md(@submit="freePowerup()")
@@ -135,8 +135,8 @@ export default {
     async clickAd() {
       console.log("Ad Clicked")
       // @ts-ignore
-      window.mixpanel.track("clickAd", { site: "https://t.me/eosbees" })
-      openURL("https://t.me/eosbees")
+      window.mixpanel.track("clickAd", { site: "https://discord.gg/zANtKSMBE5" })
+      openURL("https://discord.gg/zANtKSMBE5")
     },
     async freePowerup() {
       this.loadingPowerup = true
@@ -160,7 +160,7 @@ export default {
               <div>Accounts can claim up to two free powerups per 24hr period.</div>
 
               <strong>EOS Marketing Needs YOU! Join EOS Bees Promote #EOS Earn $EOS</strong>
-              <a href="https://t.me/eosbees"> Join us </a>
+              <a href="https://discord.gg/zANtKSMBE5"> Join us </a>
               `,
             html: true
           })
