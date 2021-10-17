@@ -3,8 +3,8 @@ div
   .row.justify-center.q-mt-xs.bg-grey-3
     q-card.cursor-pointer(style="font-size: 30px; max-width: 550px; min-height: 150px; width: 95vw")
       .col-auto
-        a(@click.prevent="clickAd()" href="https://discord.gg/zANtKSMBE5")
-          q-img(src="/banner_bee.jpg")
+        a(@click.prevent="clickAd()" href="https://powerpools.io")
+          q-img(src="/powerpools2.jpg")
   .row.justify-center.q-mt-md
     q-form.q-ma-md(@submit="freePowerup()")
       q-input(clearable color="cyan" input-style="font-size:25px; text-align:center;" label="EOS Account Name" outlined v-model="accountInput")
@@ -135,8 +135,8 @@ export default {
     async clickAd() {
       console.log("Ad Clicked")
       // @ts-ignore
-      window.mixpanel.track("clickAd", { site: "https://discord.gg/zANtKSMBE5" })
-      openURL("https://discord.gg/zANtKSMBE5")
+      window.mixpanel.track("clickAd", { site: "https://powerpools.io" })
+      openURL("https://powerpools.io")
     },
     async freePowerup() {
       this.loadingPowerup = true
@@ -159,8 +159,8 @@ export default {
             message: `
               <div>Accounts can claim up to two free powerups per 24hr period.</div>
 
-              <strong>EOS Marketing Needs YOU! Join EOS Bees Promote #EOS Earn $EOS</strong>
-              <a href="https://discord.gg/zANtKSMBE5"> Join us </a>
+              <strong>Sponsored by Powerpools.io. Hold BOID LP tokens to generate Boid Power!</strong>
+              <a href="https://powerpools.io"> Join us </a>
               `,
             html: true
           })
