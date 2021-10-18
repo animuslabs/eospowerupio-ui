@@ -1,22 +1,29 @@
 <template lang="pug">
 div
   .row.justify-center.q-mt-xs.bg-grey-3
-    q-card.cursor-pointer(style="font-size: 30px; max-width: 550px; min-height: 150px; width: 95vw")
-      .col-auto
-        a(@click.prevent="clickAd()" href="https://powerpools.io")
-          q-img(src="/powerpools2.jpg")
+    .q-pb-lg
+      .col
+        .text-h6.text-weight-thin(style="font-size: 16px") Free PowerUps sponsored by:
+        .cursor-pointer(style="font-size: 30px; max-width: 550px; min-height: 150px; width: 95vw")
+          .col-auto
+            a(@click.prevent="clickAd()" href="https://powerpools.io")
+              q-img.shadow-3(src="/powerpools2.jpg" style="border-radius: 10px")
+
   .row.justify-center.q-mt-md
-    q-form.q-ma-md(@submit="freePowerup()")
-      q-input(clearable color="cyan" input-style="font-size:25px; text-align:center;" label="EOS Account Name" outlined v-model="accountInput")
-      .row.justify-center.q-ma-md
-        div(v-if="nameValid")
-          q-btn.bg-grey-1.shadow-2(:loading="loadingPowerup" color="cyan-7" outline size="md" type="submit")
-            q-icon.powerupbtn(name="bolt")
-            div PowerUp
-        div(v-else)
-          q-btn.bg-grey-4.shadow-0(:disable="!nameValid" :loading="loadingPowerup" color="grey" flat size="md" type="submit")
-            q-icon(name="bolt")
-            div PowerUp
+    div
+      .row.justify-center
+        .text-h6.text-weight-light(style="font-size: 21px") Claim your Free PowerUp
+      q-form.q-ma-sm(@submit="freePowerup()")
+        q-input(clearable color="cyan" input-style="font-size:25px; text-align:center;" label="EOS Account Name" outlined v-model="accountInput")
+        .row.justify-center.q-ma-md
+          div(v-if="nameValid")
+            q-btn.bg-grey-1.shadow-2(:loading="loadingPowerup" color="cyan-7" outline size="md" type="submit")
+              q-icon.powerupbtn(name="bolt")
+              div PowerUp
+          div(v-else)
+            q-btn.bg-grey-4.shadow-0(:disable="!nameValid" :loading="loadingPowerup" color="grey" flat size="md" type="submit")
+              q-icon(name="bolt")
+              div PowerUp
   .row.justify-center
     .text-grey-9(style="max-width: 400px")
       q-list(separator)
