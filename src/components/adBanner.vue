@@ -1,11 +1,12 @@
 <template lang="pug">
 div
-  .q-pb-lg.icon
+  .q-pb-md.icon
     .col
       .flashy(style="font-size: 30px; max-width: 550px; min-height: 150px; width: 95vw")
         .col-auto
           a(:href="adURL" @click.prevent="clickAd()")
-            q-img.shadow-3(src="/powerpools2.jpg" style="border-radius: 10px")
+            div(id="stage")
+              q-img.imgrotate.shadow-3(src="/powerpools2.jpg" style="border-radius: 10px")
 </template>
 
 <script lang="ts">
@@ -37,12 +38,8 @@ export default Vue.extend({
   pointer-events: all;
 }
 
-/**
- * The "shine" element
- */
-
 .icon:after {
-  animation: shine 6s ease-in-out infinite;
+  animation: shine 5s ease-in-out infinite;
   animation-fill-mode: forwards;
   content: "";
   position: absolute;
@@ -56,18 +53,26 @@ export default Vue.extend({
   background: rgb(255, 255, 255);
   background: linear-gradient(to right, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.73) 77%, rgba(255, 255, 255, 0.03) 92%, rgba(255, 255, 255, 0) 100%);
 }
-
-/* Hover state - trigger effect */
-
-/* Active state */
-
-.icon:active:after {
-  opacity: 0;
+.imgrotate {
+  animation: rotate 5s ease-in-out infinite;
+  transform-style: preserve-3d;
+  animation-fill-mode: forwards;
 }
-.icon:hover {
-  opacity: 100;
-  animation-name: shine;
-  animation-timing-function: ease;
+#stage {
+  perspective: 1200px;
+  padding:6px;
+}
+
+@keyframes rotate {
+  1% {
+    transform: rotateY(0deg);
+  }
+  20%{
+    transform: rotateY(-10deg);
+  }
+  30%,100%{
+    transform: rotateY(0deg);
+  }
 }
 
 @keyframes shine {
@@ -80,12 +85,20 @@ export default Vue.extend({
     transition-timing-function: ease;
   }
 
-  20%,
-  100% {
+  20%{
     opacity: 0;
     top: 30%;
     left: 130%;
     transition-property: left, top, opacity;
+    transform: rotateY(-360deg);
+  }
+  40%,100% {
+    opacity: 1;
+    top: -200%;
+    left: -230%;
+    transition-property: left, top, opacity;
+    transition-duration: 0.7s, 0.7s, 0.15s;
+    transition-timing-function: ease;
   }
 }
 </style>

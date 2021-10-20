@@ -1,7 +1,7 @@
 <template lang="pug">
 div
   .row.justify-center.bg-grey-3
-    .text-h6.text-weight-light.q-ma-sm(style="font-size: 18px") Free PowerUps sponsored by
+    .text-h6.text-weight-light.q-mt-xs(style="font-size: 18px") Free PowerUps sponsored by
   .row.justify-center.bg-grey-3
     .col-auto
       AdBanner
