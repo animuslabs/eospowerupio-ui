@@ -1,18 +1,14 @@
 <template lang="pug">
 div
-  .row.justify-center.q-mt-xs.bg-grey-3
-    .q-pb-lg
-      .col
-        .text-h6.text-weight-thin(style="font-size: 16px") Free PowerUps sponsored by:
-        .cursor-pointer(style="font-size: 30px; max-width: 550px; min-height: 150px; width: 95vw")
-          .col-auto
-            a(@click.prevent="clickAd()" href="https://powerpools.io")
-              q-img.shadow-3(src="/powerpools2.jpg" style="border-radius: 10px")
-
+  .row.justify-center.bg-grey-3
+    .text-h6.text-weight-light.q-ma-sm(style="font-size: 18px") Free PowerUps sponsored by
+  .row.justify-center.bg-grey-3
+    .col-auto
+      AdBanner
   .row.justify-center.q-mt-md
     div
       .row.justify-center
-        .text-h6.text-weight-light(style="font-size: 21px") Claim your Free PowerUp
+        .text-h6.text-weight-light(style="font-size: 18px") Claim your Free PowerUp
       q-form.q-ma-sm(@submit="freePowerup()")
         q-input(clearable color="cyan" input-style="font-size:25px; text-align:center;" label="EOS Account Name" outlined v-model="accountInput")
         .row.justify-center.q-ma-md
@@ -104,6 +100,7 @@ import Vue from "vue"
 const globalState = Vue.observable(state)
 import * as util from "../lib/util.js"
 import { debounce } from "quasar"
+import AdBanner from "components/adBanner.vue"
 import query from "../lib/queries.js"
 // @ts-ignore
 import TimeAgo from "javascript-time-ago"
@@ -118,6 +115,7 @@ const timeAgo = new TimeAgo("en-US")
 import ax from "axios"
 import mixpanel from "mixpanel-browser"
 export default {
+  components: { AdBanner },
   name: "PageIndex",
   data() {
     return {
@@ -139,12 +137,6 @@ export default {
     else this.accountInput = null
   },
   methods: {
-    async clickAd() {
-      console.log("Ad Clicked")
-      // @ts-ignore
-      window.mixpanel.track("clickAd", { site: "https://powerpools.io" })
-      openURL("https://powerpools.io")
-    },
     async freePowerup() {
       this.loadingPowerup = true
       let message
