@@ -158,8 +158,9 @@ export default {
             message: `
               <div>Accounts can claim up to two free powerups per 24hr period.</div>
 
-              <strong>Sponsored by Powerpools.io. Hold BOID LP tokens to generate Boid Power!</strong>
-              <a href="https://powerpools.io"> Join us </a>
+              <strong>Sponsored by Violet.Garden. Make a large donation with little on Pomelo! </strong>
+              </br>
+              <a href="https://api.violet.garden/track/powerup"> View Pomelo </a>
               `,
             html: true
           })

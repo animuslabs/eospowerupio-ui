@@ -6,7 +6,7 @@ div
         .col-auto
           a(:href="adURL" @click.prevent="clickAd()")
             div(id="stage")
-              q-img.imgrotate.shadow-3(src="/powerpools2.jpg" style="border-radius: 10px")
+              q-img.imgrotate.shadow-3(:src="adImage" style="border-radius: 10px")
 </template>
 
 <script lang="ts">
@@ -16,8 +16,8 @@ import { Dialog, openURL } from "quasar"
 export default Vue.extend({
   data: () => {
     return {
-      adURL: "https://powerpools.io",
-      adImage: ""
+      adURL: "https://api.violet.garden/track/powerup",
+      adImage: "/violet-pomelo.jpg"
     }
   },
   methods: {
