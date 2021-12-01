@@ -27,42 +27,42 @@ div
           q-item-section(avatar)
             q-icon(color="grey-1" name="info")
           .text-grey-10 Sponsor eospowerup and display your banner ad here. Email us powerup@boid.com for more information on advertising packages.
-        q-item
-          q-item-section(avatar)
-            q-icon(color="yellow-8" name="info")
-          .text-grey-10 Eden on EOS Trial Run 2 has completed. See the #[a(href="https://www.reddit.com/r/eos/comments/ombrxe/eden_trial_election_ii_results/" target="_blank") Results]. Join the Eden on EOS #[a(href="https://t.me/EdenOSinfo" target="_blank") Telegram Channel] to learn more.
-        q-item
-          q-item-section(avatar)
-            q-icon(color="yellow-8" name="info")
-          div EOS PowerUp Discord Bot is now available for testing.#[a(href="https://discord.com/api/oauth2/authorize?client_id=859243915054678067&permissions=2148006976&scope=bot" target="_blank") Add Bot to your server] or #[a(href="https://discord.gg/e6h3NCvcs5") try the bot] in the Boid server by using the "@eospowerupio help" command in any channel.
-        q-item
-          q-item-section(avatar)
-            q-icon(color="yellow-8" name="info")
-          div EOS PowerUp Telgram Bot is now available for testing. Try the #[a(href="https://t.me/eospowerupbot" target="_blank") Telegram Bot]
-        q-item
-          q-item-section(avatar)
-            q-icon(color="yellow-8" name="info")
-          div eospowerup.io has received funding through the Eden on EOS process. Read about the #[a(href="https://crypto.writer.io/p/edenos-alpha-test-results-and-experiences" target="_blank") Eden on EOS Trial #1]
-        //- q-separator
-        q-item
-          q-item-section(avatar)
-            q-icon(color="cyan-7" name="bolt")
-          q-item-section EOS accounts can claim two PowerUps every 24 hours.
-        //- q-separator
-        q-item
-          q-item-section(avatar)
-            q-icon(color="cyan-7" name="bolt")
-          div There were very important changes to the way EOS blockchain manages its resources. Learn more about #[a(href="https://eos.io/eos-public-blockchain/powerup-model/") PowerUp]
-        //- q-separator
-        q-item
-          q-item-section(avatar)
-            q-icon(color="cyan-7" name="bolt")
-          div Want more power? Register accounts to receive automatic PowerUp (and RAM) based on usage. Check out #[a(href="/auto") Auto PowerUp]
-        //- q-separator
-        q-item
-          q-item-section(avatar)
-            q-icon(color="cyan-7" name="bolt")
-          div Free PowerUp's are funded by community donations. To make a donation you can send any amount of EOS to "eospowerupio" account with the memo "donation"
+        //- q-item
+        //-   q-item-section(avatar)
+        //-     q-icon(color="yellow-8" name="info")
+        //-   .text-grey-10 Eden on EOS Trial Run 2 has completed. See the #[a(href="https://www.reddit.com/r/eos/comments/ombrxe/eden_trial_election_ii_results/" target="_blank") Results]. Join the Eden on EOS #[a(href="https://t.me/EdenOSinfo" target="_blank") Telegram Channel] to learn more.
+        //- q-item
+        //-   q-item-section(avatar)
+        //-     q-icon(color="yellow-8" name="info")
+        //-   div EOS PowerUp Discord Bot is now available for testing.#[a(href="https://discord.com/api/oauth2/authorize?client_id=859243915054678067&permissions=2148006976&scope=bot" target="_blank") Add Bot to your server] or #[a(href="https://discord.gg/e6h3NCvcs5") try the bot] in the Boid server by using the "@eospowerupio help" command in any channel.
+        //- q-item
+        //-   q-item-section(avatar)
+        //-     q-icon(color="yellow-8" name="info")
+        //-   div EOS PowerUp Telgram Bot is now available for testing. Try the #[a(href="https://t.me/eospowerupbot" target="_blank") Telegram Bot]
+        //- q-item
+        //-   q-item-section(avatar)
+        //-     q-icon(color="yellow-8" name="info")
+        //-   div eospowerup.io has received funding through the Eden on EOS process. Read about the #[a(href="https://crypto.writer.io/p/edenos-alpha-test-results-and-experiences" target="_blank") Eden on EOS Trial #1]
+        //- //- q-separator
+        //- q-item
+        //-   q-item-section(avatar)
+        //-     q-icon(color="cyan-7" name="bolt")
+        //-   q-item-section EOS accounts can claim two PowerUps every 24 hours.
+        //- //- q-separator
+        //- q-item
+        //-   q-item-section(avatar)
+        //-     q-icon(color="cyan-7" name="bolt")
+        //-   div There were very important changes to the way EOS blockchain manages its resources. Learn more about #[a(href="https://eos.io/eos-public-blockchain/powerup-model/") PowerUp]
+        //- //- q-separator
+        //- q-item
+        //-   q-item-section(avatar)
+        //-     q-icon(color="cyan-7" name="bolt")
+        //-   div Want more power? Register accounts to receive automatic PowerUp (and RAM) based on usage. Check out #[a(href="/auto") Auto PowerUp]
+        //- //- q-separator
+        //- q-item
+        //-   q-item-section(avatar)
+        //-     q-icon(color="cyan-7" name="bolt")
+        //-   div Free PowerUp's are funded by community donations. To make a donation you can send any amount of EOS to "eospowerupio" account with the memo "donation"
 </template>
 
 <style>
