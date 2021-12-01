@@ -158,9 +158,9 @@ export default {
             message: `
               <div>Accounts can claim up to two free powerups per 24hr period.</div>
 
-              <strong>Sponsored by Violet.Garden. Make a large donation with little on Pomelo! </strong>
+              <strong>Join now and build a dApp on Effect Network-the decentralized gateway to the world's talent. </strong>
               </br>
-              <a href="https://api.violet.garden/track/powerup"> View Pomelo </a>
+              <a href="https://effect-network-hackathon.devpost.com"> Join Hackathon </a>
               `,
             html: true
           })

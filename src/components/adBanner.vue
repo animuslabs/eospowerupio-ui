@@ -16,8 +16,8 @@ import { Dialog, openURL } from "quasar"
 export default Vue.extend({
   data: () => {
     return {
-      adURL: "https://api.violet.garden/track/powerup",
-      adImage: "/violet-pomelo.jpg"
+      adURL: "https://effect-network-hackathon.devpost.com",
+      adImage: "/efx-hackathon.jpg"
     }
   },
   methods: {
