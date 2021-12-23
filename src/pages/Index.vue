@@ -1,10 +1,10 @@
 <template lang="pug">
 div
-  .row.justify-center.bg-grey-3
-    .text-h6.text-weight-light.q-mt-xs(style="font-size: 18px") Free PowerUps sponsored by
-  .row.justify-center.bg-grey-3
-    .col-auto
-      AdBanner
+  //- .row.justify-center.bg-grey-3
+  //-   .text-h6.text-weight-light.q-mt-xs(style="font-size: 18px") Free PowerUps sponsored by
+  //- .row.justify-center.bg-grey-3
+  //-   .col-auto
+  //-     AdBanner
   .row.justify-center.q-mt-md
     div
       .row.justify-center
@@ -157,11 +157,11 @@ export default {
             title: "Claimed Free Powerup",
             message: `
               <div>Accounts can claim up to two free powerups per 24hr period.</div>
-
-              <strong>Join now and build a dApp on Effect Network-the decentralized gateway to the world's talent. </strong>
-              </br>
-              <a href="https://effect-network-hackathon.devpost.com"> Join Hackathon </a>
-              `,
+            `
+              // <strong>Join now and build a dApp on Effect Network-the decentralized gateway to the world's talent. </strong>
+              // </br>
+              // <a href="https://effect-network-hackathon.devpost.com"> Join Hackathon </a>
+              ,
             html: true
           })
         } else if (result.status == "reachedFreeQuota") {
