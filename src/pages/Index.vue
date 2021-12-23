@@ -1,5 +1,25 @@
 <template lang="pug">
 div
+  .q-pa-sm
+  .row.justify-center
+    .q-pa-md(style="max-width:500px;").bg-grey-2
+      .row
+        .col-auto.q-mr-md
+          .text-h4 🙏
+        .col
+          div You can help maintain free community PowerUps by sending any amount of EOS to #[strong eospowerupio] with the memo #[strong donation].
+      .q-ma-md
+      .row
+        .col-auto.q-mr-md
+          .text-h4 🚨
+        .col
+          strong Donate at least 1 EOS to be included in the PowerUp NFT appreciation drop.
+      .q-ma-md
+      .row.items-center
+        .col-auto.q-mr-md
+          .text-h4 🎄
+        .col
+          div Happy holidays from EOS PowerUp!
   //- .row.justify-center.bg-grey-3
   //-   .text-h6.text-weight-light.q-mt-xs(style="font-size: 18px") Free PowerUps sponsored by
   //- .row.justify-center.bg-grey-3
