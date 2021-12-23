@@ -19,7 +19,7 @@ div
         .col-auto.q-mr-md
           .text-h4 🎄
         .col
-          div Happy holidays from EOS PowerUp!
+          div Happy Holidays from EOS PowerUp!
   //- .row.justify-center.bg-grey-3
   //-   .text-h6.text-weight-light.q-mt-xs(style="font-size: 18px") Free PowerUps sponsored by
   //- .row.justify-center.bg-grey-3
