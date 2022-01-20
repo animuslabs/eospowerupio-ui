@@ -53,11 +53,11 @@ import { state } from "../state/global";
 // import * as nfts from "../state/nfts";
 export default Vue.extend({
   data() {
-    // let donationData: any;
+    let donationData: any;
     return {
       auth: state.auth,
       donations: state.queries.donations,
-      // donationData,
+      donationData,
       donateQuantity: 0,
       infoPanel: false,
       pointsEstimate: 0,
@@ -68,7 +68,9 @@ export default Vue.extend({
   async mounted() {
     await this.donations.get_data();
     console.log("donations data: ", this.donations.data);
-    this.pointsRate = this.userPoints(this.convert_donation_to_score(1));
+    this.pointsRate = this.userPoints(
+      await this.donations.convert_donation_to_score(1)
+    );
   },
   methods: {
     async donate() {
@@ -80,7 +82,7 @@ export default Vue.extend({
           to: this.donations.contractAccount,
           memo: "",
           quantity: Number(this.donateQuantity).toFixed(4) + " EOS",
-          pointsEstimate: 0 /////////////////////////////////////////////////////////////////////////////////////not sure why this is in the action data
+          pointsEstimate: 0
         }
       };
       await this.auth.doActions([action]);
@@ -91,48 +93,6 @@ export default Vue.extend({
     },
     userPoints(score: number): string {
       return (score / 100).toFixed(2);
-    },
-    convert_donation_to_score(donation: string | number): number {
-      //donation is asset "1.0000 EOS"
-      const config = this.donations.data.config;
-      console.log(config);
-      const now = Math.floor(Date.now() / 1000); //current time point in sec since epoch
-
-      const first_round_start_sec =
-        Date.parse(config.start_time.split(".")[0] + ".000+00:00") / 1000; //timestamp of when the first round will/is start(ed)
-      const total_sec_elapsed = now - first_round_start_sec;
-      const current_round_id =
-        Math.floor(total_sec_elapsed / config.round_length_sec) + 1;
-      const round_start_sec =
-        first_round_start_sec +
-        config.round_length_sec * (current_round_id - 1); //start time of the current round
-      const round_sec_elapsed = now - round_start_sec; // seconds that elapsed in current round
-
-      if (now < first_round_start_sec) {
-        // first round didn't start yet.
-        return 0;
-      }
-
-      let step = Math.floor(round_sec_elapsed / config.decay_step_sec);
-      // console.log("now", now);
-      // console.log("first_round_start_sec", first_round_start_sec);
-      // console.log("total_sec_elapsed", total_sec_elapsed);
-      // console.log("current_round_id", current_round_id);
-      // console.log("round_start_sec", round_start_sec);
-      // console.log("round_sec_elapsed", round_sec_elapsed);
-      // console.log("step", step);
-
-      if (step > config.start_decay_after_steps) {
-        step -= config.start_decay_after_steps;
-      } else {
-        //no bonus decay so we stay at step 0
-        step = 0;
-      }
-      //assuming donation asset with precission 4
-      const pv = parseFloat(donation) * 10000;
-      const bonus = pv * Math.pow(1 - config.compound_decay_pct, step);
-      let score = pv + bonus;
-      return score;
     }
   },
   computed: {
@@ -156,10 +116,11 @@ export default Vue.extend({
     }
   },
   watch: {
-    donateQuantity: function(newV: number, oldV: number): void {
-      if (newV && newV != oldV) {
-        this.pointsEstimate = this.convert_donation_to_score(newV);
-      }
+    async donateQuantity(val): Promise<any> {
+      const result = await this.donations.convert_donation_to_score(
+        this.donateQuantity
+      );
+      this.pointsEstimate = result;
     }
   }
 });
