@@ -41,75 +41,82 @@ div.q-pa-md
             //-   .text-h6 {{user.score}}
 </template>
 <script lang="ts">
-import Vue from 'vue'
-import { state } from '../state/global'
+import Vue from "vue";
+import { state } from "../state/global";
 
 /**
-  * Convert value from one range to another
-  * @param {Number} value value to convert
-  * @param {Object} oldRange min, max of values range
-  * @param {Object} newRange min, max of desired range
-  * @return {Number} value converted to other range
-  */
+ * Convert value from one range to another
+ * @param {Number} value value to convert
+ * @param {Object} oldRange min, max of values range
+ * @param {Object} newRange min, max of desired range
+ * @return {Number} value converted to other range
+ */
 function convertRange(value, oldRange, newRange) {
-  return ((value - oldRange.min) * (newRange.max - newRange.min)) / (oldRange.max - oldRange.min) + newRange.min;
+  return (
+    ((value - oldRange.min) * (newRange.max - newRange.min)) /
+      (oldRange.max - oldRange.min) +
+    newRange.min
+  );
 }
 
 export default Vue.extend({
   data() {
-    let leaderboard: any[] = []
-    let updateInterval: any
+    let leaderboard: any[] = [];
+    let updateInterval: any;
     return {
       auth: state.auth,
       donations: state.queries.donations,
       leaderboard,
       updateInterval
-    }
+    };
   },
   async mounted() {
-    await this.donations.get_data()
-    this.updateLeaderboard()
+    await this.donations.get_data();
+    this.updateLeaderboard();
     this.updateInterval = setInterval(() => {
-      this.updateLeaderboard()
-      this.donations.get_data()
-    }, 10000)
+      this.updateLeaderboard();
+      this.donations.get_data();
+    }, 10000);
   },
   destroyed() {
-    clearInterval(this.updateInterval)
+    clearInterval(this.updateInterval);
   },
   methods: {
     userPoints(score: number): string {
-      return (score / 100).toFixed(2)
+      return (score / 100).toFixed(2);
     },
     async updateLeaderboard() {
-      this.donations.get_leaderboard()
+      this.donations.get_leaderboard(0);
     }
-  }, computed: {
+  },
+  computed: {
     leaderboardProgress(): number {
-      if (!this.donations.data || !this.donations.config) return 0
-      const start = this.donations.data.calc.round_start_sec
-      const end = start + this.donations.config.round_length_sec
-      const current = Date.now() / 1000
-      const result = convertRange(current, { min: start, max: end }, { min: 0, max: 1 })
-      console.log('progress:', result);
-      return result
+      if (!this.donations.data || !this.donations.config) return 0;
+      const start = this.donations.data.calc.round_start_sec;
+      const end = start + this.donations.config.round_length_sec;
+      const current = Date.now() / 1000;
+      const result = convertRange(
+        current,
+        { min: start, max: end },
+        { min: 0, max: 1 }
+      );
+      console.log("progress:", result);
+      return result;
     },
     roundData(): any {
       let data = {
         start: new Date().toDateString(),
         end: new Date().toDateString()
-      }
-      if (!this.donations.data || !this.donations.config) return data
-      let start = this.donations.data.calc.round_start_sec * 1000
-      data.start = new Date(start).toDateString()
-      data.end = new Date(start + (this.donations.config.round_length_sec * 1000)).toUTCString()
-      return data
+      };
+      if (!this.donations.data || !this.donations.config) return data;
+      let start = this.donations.data.calc.round_start_sec * 1000;
+      data.start = new Date(start).toDateString();
+      data.end = new Date(
+        start + this.donations.config.round_length_sec * 1000
+      ).toUTCString();
+      return data;
     }
   }
-})
+});
 </script>
-<style lang="ts">
-
-</style>
-
-
+<style lang="ts"></style>

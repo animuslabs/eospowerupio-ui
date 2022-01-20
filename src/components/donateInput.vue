@@ -84,36 +84,39 @@ export default Vue.extend({
         }
       };
       await this.auth.doActions([action]);
-      this.donations.get_leaderboard();
+      this.donations.get_leaderboard(0); //pass in a zero to match function def (1 argument)... need to make donations.js typescript with optional arg ?: number
       setTimeout(() => {
-        this.donations.get_leaderboard();
+        this.donations.get_leaderboard(0);
       }, 5000);
     },
     userPoints(score: number): string {
       return (score / 100).toFixed(2);
     },
     convert_donation_to_score(donation: string | number): number {
+      if (typeof donation == "string") {
+        donation = parseFloat(donation);
+      }
       //donation is asset "1.0000 EOS"
       const config = this.donations.data.config;
       console.log(config);
-      const now = Math.floor(Date.now() / 1000); //current time point in sec since epoch
+      const now: number = Math.floor(Date.now() / 1000); //current time point in sec since epoch
 
-      const first_round_start_sec =
+      const first_round_start_sec: number =
         Date.parse(config.start_time.split(".")[0] + ".000+00:00") / 1000; //timestamp of when the first round will/is start(ed)
-      const total_sec_elapsed = now - first_round_start_sec;
-      const current_round_id =
+      const total_sec_elapsed: number = now - first_round_start_sec;
+      const current_round_id: number =
         Math.floor(total_sec_elapsed / config.round_length_sec) + 1;
-      const round_start_sec =
+      const round_start_sec: number =
         first_round_start_sec +
         config.round_length_sec * (current_round_id - 1); //start time of the current round
-      const round_sec_elapsed = now - round_start_sec; // seconds that elapsed in current round
+      const round_sec_elapsed: number = now - round_start_sec; // seconds that elapsed in current round
 
       if (now < first_round_start_sec) {
         // first round didn't start yet.
         return 0;
       }
 
-      let step = Math.floor(round_sec_elapsed / config.decay_step_sec);
+      let step: number = Math.floor(round_sec_elapsed / config.decay_step_sec);
       // console.log("now", now);
       // console.log("first_round_start_sec", first_round_start_sec);
       // console.log("total_sec_elapsed", total_sec_elapsed);
@@ -129,7 +132,7 @@ export default Vue.extend({
         step = 0;
       }
       //assuming donation asset with precission 4
-      const pv = parseFloat(donation) * 10000;
+      const pv = donation * 10000;
       const bonus = pv * Math.pow(1 - config.compound_decay_pct, step);
       let score = pv + bonus;
       return score;
