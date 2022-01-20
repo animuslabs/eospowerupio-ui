@@ -125,7 +125,9 @@ class donations {
       table: "leaderboard"
     });
 
-    if (res && res.rows.length) {
+    console.log(res);
+
+    if (res && res.length) {
       console.log(`leaderboard`, res.rows);
       console.log(`table data complete?`, !res.more);
       this.leaderboard = res.rows;
@@ -186,7 +188,7 @@ class donations {
       table: "rounds"
     });
 
-    if (res && res.rows.length) {
+    if (res && res.length) {
       console.log(`rounds`, res.rows);
       console.log(`table data complete?`, !res.more);
     } else {
