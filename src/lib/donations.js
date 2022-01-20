@@ -115,14 +115,14 @@ class donations {
       round_id = this.data.calc.current_round_id;
     }
     console.log(`retrieving leaderboard with scope/id ${round_id}`);
-    let res = await this.api.rpc.get_table_rows({
+
+    let res = await queries.getFullTable({
       json: true,
       code: this.contractAccount,
       key_type: "i64",
       index_position: 2,
       scope: String(round_id),
-      table: "leaderboard",
-      limit: -1
+      table: "leaderboard"
     });
 
     if (res && res.rows.length) {
@@ -157,7 +157,6 @@ class donations {
   async get_round(round_id) {
     console.log(`retrieving round with id ${round_id}`);
     let res = await this.api.rpc.get_table_rows({
-      json: true,
       code: this.contractAccount,
       scope: this.contractAccount,
       lower_bound: round_id,
@@ -181,12 +180,10 @@ class donations {
 
   async get_rounds() {
     console.log(`retrieving rounds table`);
-    let res = await this.api.rpc.get_table_rows({
-      json: true,
+    let res = await queries.getFullTable({
       code: this.contractAccount,
       scope: this.contractAccount,
-      table: "rounds",
-      limit: -1
+      table: "rounds"
     });
 
     if (res && res.rows.length) {

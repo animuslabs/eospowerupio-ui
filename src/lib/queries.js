@@ -5,17 +5,29 @@ const code = "eospowerupio";
 import dfuse from "../lib/dfuse";
 import donations from "../lib/donations";
 
-async function getFullTable({ code, scope, table }) {
-  let limit = 100;
+async function getFullTable({
+  code,
+  scope,
+  table,
+  limit,
+  key_type,
+  index_position
+}) {
+  limit = limit || 100;
   let results = [];
   let lower_bound = "";
+  key_type = key_type || "";
+  index_position = index_position || 1;
+
   const loop = async () => {
     const result = await api.rpc.get_table_rows({
       code,
       scope,
       table,
       limit,
-      lower_bound
+      lower_bound,
+      key_type,
+      index_position
     });
     for (const row of result.rows) results.push(row);
     if (result.more) {

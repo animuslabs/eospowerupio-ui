@@ -133,7 +133,7 @@ export default Vue.extend({
       }
       //assuming donation asset with precission 4
       const pv = donation * 10000;
-      const bonus = pv * Math.pow(1 - config.compound_decay_pct, step);
+      const bonus: number = pv * Math.pow(1 - config.compound_decay_pct, step);
       let score = pv + bonus;
       return score;
     }
