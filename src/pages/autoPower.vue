@@ -12,7 +12,7 @@ div
           h5.absolute-center Login to continue
         //- .row.justify-center.q-pa-xl
         //-   q-btn(label="login" @click="loginUser" color="cyan" flat size="lg")
-   
+
 </template>
 
 <style>
@@ -53,8 +53,9 @@ ul ul {
 import { state } from "../state/global";
 import powerupBal from '../components/powerupBal.vue'
 import powerupWatch from '../components/powerupWatch.vue'
+import Vue from "vue"
 
-export default {
+export default Vue.extend( {
   name: "PageIndex",
   components:{powerupBal,powerupWatch},
   data() {
@@ -66,7 +67,7 @@ export default {
 
   },
   mounted() {
- 
+
   },
   destroyed() {
   },
@@ -77,5 +78,5 @@ export default {
   watch: {
 
   },
-};
+})
 </script>

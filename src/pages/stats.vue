@@ -40,7 +40,7 @@ div
         q-card.q-ma-sm.q-pa-md.q-ma-md(:key="item.trace.id" bordered flat v-for="item of displayEvents")
           .row.items-center
             .col-auto
-              div(v-for="(el,key) of item.trace.matchingActions[0].json")
+              div(v-for="[key,el] of Object.entries(item.trace.matchingActions[0].json)")
                 div(v-if="key != 'message'")
                   .row.items-center
                     .col-auto.on-left.text-weight-light.text-grey-9 {{ key }}:
@@ -53,6 +53,7 @@ div
 </template>
 
 <script>
+import Vue from "vue"
 import dfuse from "../lib/dfuse"
 import queries from "../lib/queries.js"
 // @ts-ignore
@@ -64,7 +65,7 @@ import en from "javascript-time-ago/locale/en"
 
 const timeAgo = new TimeAgo("en-US")
 
-export default {
+export default Vue.extend(  {
   data() {
     return {
       stream: null,
@@ -129,7 +130,7 @@ export default {
     clearInterval(this.listInterval)
     if (this.stream) this.stream.close()
   }
-}
+})
 </script>
 
 <style>

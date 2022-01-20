@@ -8,7 +8,8 @@ const routes = [
       { path: '/', component: () => import('../pages/Index.vue'), name: 'index' },
       { path: '/free', component: () => import('../pages/Index.vue'), name: 'free' },
       { path: '/auto', component: () => import('../pages/autoPower.vue'), name: 'auto' },
-      { path: '/stats', component: () => import('../pages/stats.vue'), name: 'stats' }
+      { path: '/stats', component: () => import('../pages/stats.vue'), name: 'stats' },
+      { path: '/nft', component: () => import('../pages/nft.vue'), name: 'nft' }
     ]
   },
 

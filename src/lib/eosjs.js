@@ -14,7 +14,8 @@ function init(keys, apiurl) {
   if (!apiurl) apiurl = 'https://eos.greymass.com'
   var rpc = new JsonRpc(apiurl, { fetch })
   const api = new Api({ rpc, signatureProvider, textDecoder: new TextDecoder(), textEncoder: new TextEncoder() })
-  return { api, rpc,tapos }
+
+  return { api, rpc, tapos }
 }
 
-module.exports = init 
+module.exports = init

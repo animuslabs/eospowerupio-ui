@@ -130,11 +130,10 @@ import en from "javascript-time-ago/locale/en"
 // TimeAgo.addDefaultLocale(en)
 
 const timeAgo = new TimeAgo("en-US")
-
 // console.log(state.auth.userData)
 import ax from "axios"
 import mixpanel from "mixpanel-browser"
-export default {
+export default Vue.extend( {
   components: { AdBanner },
   name: "PageIndex",
   data() {
@@ -154,7 +153,7 @@ export default {
 
   mounted() {
     if (this.auth.userData.actor) this.accountInput = this.auth.userData.actor
-    else this.accountInput = null
+    else this.accountInput = "  "
   },
   methods: {
     async freePowerup() {
@@ -233,5 +232,5 @@ export default {
       else this.accountInput = null
     }
   }
-}
+})
 </script>

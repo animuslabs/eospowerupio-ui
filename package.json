@@ -11,11 +11,11 @@
   },
   "dependencies": {
     "@dfuse/client": "^0.3.20",
-    "@quasar/extras": "^1.0.0",
+    "@quasar/extras": "^1.12.4",
     "@scatterjs/core": "^2.7.54",
     "@scatterjs/eosjs2": "^1.5.36",
-    "anchor-link": "^3.2.3",
-    "anchor-link-browser-transport": "^3.1.3",
+    "anchor-link": "^3.3.5",
+    "anchor-link-browser-transport": "^3.2.5",
     "axios": "^0.21.1",
     "core-js": "^3",
     "crc-32": "^1.2.0",
@@ -23,8 +23,7 @@
     "eosjs": "^21.0.3",
     "javascript-time-ago": "^2.3.4",
     "mixpanel-browser": "^2.41.0",
-    "quasar": "^1.0.0",
-    "ual-anchor": "^1.0.5"
+    "quasar": "^1.0.0"
   },
   "devDependencies": {
     "@quasar/app": "^2.0.0",

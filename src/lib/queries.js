@@ -1,8 +1,26 @@
-const { rpc } = require('./eosjs')(null, 'https://api.eosn.io/')
+// const { rpc, api } = require('./eosjs')(null, 'https://api.eosn.io/')
+const { rpc, api } = require('./eosjs')(null, 'https://jungle3.greymass.com')
 import ax from 'axios'
 const code = 'eospowerupio'
 import dfuse from '../lib/dfuse'
+import donations from '../lib/donations'
 
+async function getFullTable({ code, scope, table }) {
+  let limit = 100
+  let results = []
+  let lower_bound = ""
+  const loop = async () => {
+    const result = await api.rpc.get_table_rows({ code, scope, table, limit, lower_bound })
+    for (const row of result.rows) results.push(row)
+    if (result.more) {
+      console.log(results.length);
+      lower_bound = result.next_key
+      return loop()
+    }
+  }
+  await loop()
+  return results
+}
 
 class EventEmitter {
   constructor() {
@@ -24,6 +42,8 @@ class EventEmitter {
 
 
 const queries = {
+  getFullTable,
+  donations: new donations('eospwrupnfts', api),
   async getAccount(accountName) {
     if (!accountName) return false
     const result = (await rpc.get_account(accountName))

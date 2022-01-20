@@ -9,7 +9,7 @@
 module.exports = function (/* ctx */) {
   return {
     // https://quasar.dev/quasar-cli/supporting-ts
-    supportTS: false,
+    supportTS: true,
 
     // https://quasar.dev/quasar-cli/prefetch-feature
     // preFetch: true,
@@ -70,12 +70,12 @@ module.exports = function (/* ctx */) {
     },
 
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
-    devServer: {
-      clientLogLevel: 'error',
-      https: false,
-      port: 8080,
-      open: false // opens browser window automatically
-    },
+    // devServer: {
+    //   // clientLogLevel: 'error',
+    //   https: false,
+    //   port: 8080,
+    //   open: false // opens browser window automatically
+    // },
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-framework
     framework: {
@@ -96,7 +96,7 @@ module.exports = function (/* ctx */) {
       // directives: [],
 
       // Quasar plugins
-      plugins: [ 'Dialog', 'Notify']
+      plugins: ['Dialog', 'Notify']
     },
 
     // animations: 'all', // --- includes all animations
@@ -186,7 +186,7 @@ module.exports = function (/* ctx */) {
       // More info: https://quasar.dev/quasar-cli/developing-electron-apps/node-integration
       nodeIntegration: true,
 
-      extendWebpack (/* cfg */) {
+      extendWebpack(/* cfg */) {
         // do something with Electron main process Webpack cfg
         // chainWebpack also available besides this extendWebpack
       }

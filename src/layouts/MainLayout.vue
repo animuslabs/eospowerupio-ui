@@ -6,9 +6,7 @@ q-layout(padding)
         .row.items-center
           q-img.on-left(src="/icons/favicon-128x128.png" width="25px")
           small EOS PowerUp
-
       q-btn(:icon="'img:/' + auth.authMethod + '-logo.png'" :label="auth.userData.actor" :size="$q.platform.is.mobile ? 'sm' : 'md'" @click="auth.logout()" flat stretch v-if="auth.userData.actor")
-
       q-btn-dropdown(:icon="'img:/eos-logo-minimal-white.svg'" flat label="login" stretch v-if="!auth.userData.actor")
         q-list
           q-item(:key="authItem.title" @click="authItem.login()" clickable tabindex="0" v-close-popup v-for="(authItem,name) of auth.loginOptions" v-ripple)
@@ -24,6 +22,7 @@ q-layout(padding)
       q-tab(icon="query_stats" name="stats")
       q-tab(icon="bolt" label="Free" name="free")
       q-tab(icon="visibility" label="Auto" name="auto")
+      q-tab(icon="leaderboard" label="nft" name="nft")
 
   router-view
   div(style="height: 300px")
@@ -81,8 +80,6 @@ q-layout(padding)
 
         .row.q-pa-sm.q-ma-lg.justify-center.bg-yellow(v-if="collectedEmail")
           div e-mail registered
-
-</q-layout>
 </template>
 
 <script>
@@ -98,7 +95,7 @@ function validateEmail(email) {
   return re.test(String(email).toLowerCase())
 }
 
-export default {
+export default Vue.extend( {
   name: "MainLayout",
   components: {},
   data() {
@@ -141,5 +138,5 @@ export default {
       this.tab = this.$route.name
     }
   }
-}
+})
 </script>

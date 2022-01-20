@@ -9,7 +9,7 @@ div
               q-img.imgrotate.shadow-3(:src="adImage" style="border-radius: 10px")
 </template>
 
-<script lang="ts">
+<script>
 import Vue from "vue"
 import { Dialog, openURL } from "quasar"
 
