@@ -128,11 +128,10 @@ class donations {
     console.log(res);
 
     if (res && res.length) {
-      console.log(`leaderboard`, res.rows);
-      console.log(`table data complete?`, !res.more);
-      this.leaderboard = res.rows;
+      console.log(`leaderboard`, res);
+      this.leaderboard = res;
       this.calculate_mint_results();
-      return res.rows;
+      return res;
     } else {
       return false;
     }
