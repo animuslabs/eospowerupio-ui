@@ -32,14 +32,23 @@ import Vue from 'vue'
 import donateInput from 'src/components/donateInput.vue'
 import donateLeaderboard from 'src/components/donateLeaderboard.vue'
 import burnNFTs from 'src/components/burnNFTs.vue'
-
+import { state } from '../state/global'
+let interval: any
 export default Vue.extend({
   components: { donateInput, donateLeaderboard, burnNFTs },
   data: () => {
     return {
+      auth: state.auth,
+      donations: state.queries.donations,
       infoPanel: false,
       depositQuantity: 0
     }
+  },
+  mounted() {
+    this.donations.get_config(true)
+    // interval = setInterval(() => {
+    //   this.donations.get_config(true)
+    // }, 120000)
   }
 })
 </script>
