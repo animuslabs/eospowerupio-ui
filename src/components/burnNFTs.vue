@@ -7,12 +7,15 @@ div
       mintCard(label1="Silver" label2="Gold" :printBalance="printBalances.silver" :burnQuantity="silverToGold" :valid="validBurnSilver" @mint="burnSilver()")
   .row.full-width.q-ma-sm.justify-center
     q-card(bordered flat style="width:120px;").text-black.q-pa-sm
-      .row.items-center.justify-center
+      .row.items-center
         .col-auto
           small Gold Balance
-        .col-2
+        .col-1
         .col-auto
           div {{ printBalances.gold }}
+        .col
+          q-img(src='/nftart/powerupnft-gold.png' width="20px")
+
     q-btn(label="atomic hub" target="_blank" style="width:120px; color:rgb(234, 146, 62);" type="a" :href="atomicLink" icon="visibility" size="xs" color="#1a203c" outline).q-ml-md
 
 

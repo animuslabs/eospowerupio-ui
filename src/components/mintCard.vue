@@ -10,7 +10,8 @@ q-card(bordered flat style="width:120px").q-ma-sm
   q-separator
   .row.justify-center
   .row.justify-center
-    q-btn(:label="'Burn ' + burnQuantity" outline :ripple="false" flat @click="mint()" color="orange" :disable="!valid").full-width.no-border-radius
+    q-btn( size="md" :label="'Burn ' + burnQuantity" outline :ripple="false" flat @click="mint()" color="orange" :disable="!valid").full-width.no-border-radius
+      q-img(:src="icon" width="20px").q-ml-sm
   q-separator
   .row.justify-center.q-pb-sm.q-pt-sm
     div Mint 1 {{ label2 }}
@@ -26,6 +27,11 @@ export default Vue.extend({
   }, methods: {
     mint() {
       this.$emit('mint')
+    }
+  },
+  computed: {
+    icon(): string {
+      return `/nftart/powerupnft-${this.label1}.png`
     }
   }
 })

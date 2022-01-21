@@ -33,7 +33,7 @@ div.q-pa-md
         q-item(v-for="(user,index) of donations.leaderboard" :key="user.account")
           q-item-section(top, avatar)
             div.relative-position
-              q-img(src='/icons/favicon-128x128.png' width="40px")
+              q-img(src='/nftart/powerupnft-bronze.png' width="40px")
               q-badge(color="teal" :label="donations.mintResults[index] || 0" floating)
               q-tooltip(v-if="donations.mintResults[index] && donations.mintResults[index] > 0") will mint {{ donations.mintResults[index] }} Bronze NFTs
           q-item-section
@@ -42,13 +42,13 @@ div.q-pa-md
           q-item-section
             q-item-label
               .row
-                strong Points:
+                .text-weight-light Points:
                 .col
                 div {{ userPoints(user.score) }}
             //- q-item-label minting: {{ donations.mintResults[index] || 0 }} bronze
             q-item-label
               .row
-                strong Mint:
+                .text-weight-light Mint:
                 .col
                 div {{ (parseFloat(donations.config.nft.mint_price_min) + (parseFloat(donations.config.nft.mint_price_increase_by_rank) * index)).toFixed(2) || 0 }} EOS
       div(v-else).relative-position(style="height:300px;")
