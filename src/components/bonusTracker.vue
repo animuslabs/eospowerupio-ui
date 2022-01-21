@@ -24,7 +24,7 @@ div.q-mb-md
   .row.items-center.bg-white.q-pa-xs
     .col-auto.relative-position.q-mr-md
       q-img(src='/icons/favicon-128x128.png' spinner-color='primary', spinner-size='82px' width="40px")
-      q-badge(v-if="donations.config" :label="donations.config.nft.bonus_silver_per_bronze_claimed - pendingGold" floating color="teal").absolute-position
+      q-badge(v-if="donations.config" :label="donations.config.nft.bonus_gold_per_silver_claimed - pendingGold" floating color="teal").absolute-position
     .col
       .row.items-center
         .col

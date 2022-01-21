@@ -29,8 +29,8 @@ div.q-pa-md
   .row
     q-scroll-area(style="width:350px; max-width:80vw; height:400px;").bg-white
       //- div {{ donations.mintResults }}
-      q-list(v-if="leaderboard.length > 0")
-        q-item(v-for="(user,index) of leaderboard" :key="user.account")
+      q-list(v-if="donations.leaderboard.length > 0")
+        q-item(v-for="(user,index) of donations.leaderboard" :key="user.account")
           q-item-section(top, avatar)
             q-avatar(text-color='white', icon='img:/icons/favicon-128x128.png',).shadow-1.bg-brown-6
               q-badge(color="teal" :label="donations.mintResults[index] || 0" floating)
