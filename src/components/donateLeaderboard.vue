@@ -29,17 +29,28 @@ div.q-pa-md
   .row
     q-scroll-area(style="width:350px; max-width:80vw; height:400px;").bg-white
       //- div {{ donations.mintResults }}
-      q-list.q-mt-md(v-if="donations.leaderboard.length > 0")
+      q-list.q-mt-md(v-if="donations.leaderboard.length > 0 && donations.config")
         q-item(v-for="(user,index) of donations.leaderboard" :key="user.account")
           q-item-section(top, avatar)
-            q-avatar(text-color='white', icon='img:/icons/favicon-128x128.png',).shadow-1.bg-brown-6
+            div.relative-position
+              q-img(src='/icons/favicon-128x128.png' width="40px")
               q-badge(color="teal" :label="donations.mintResults[index] || 0" floating)
+              q-tooltip(v-if="donations.mintResults[index] && donations.mintResults[index] > 0") will mint {{ donations.mintResults[index] }} Bronze NFTs
           q-item-section
             q-item-label {{ user.donator }}
             q-item-label(caption, lines='2') {{ user.donated }}
           q-item-section
-            q-item-label points: {{ userPoints(user.score) }}
-            q-item-label minting: {{ donations.mintResults[index] || 0 }} bronze
+            q-item-label
+              .row
+                strong Points:
+                .col
+                div {{ userPoints(user.score) }}
+            //- q-item-label minting: {{ donations.mintResults[index] || 0 }} bronze
+            q-item-label
+              .row
+                strong Mint:
+                .col
+                div {{ (parseFloat(donations.config.nft.mint_price_min) + (parseFloat(donations.config.nft.mint_price_increase_by_rank) * index)).toFixed(2) || 0 }} EOS
       div(v-else).relative-position(style="height:300px;")
         p.absolute-center(style="width:250px;") No one has donated yet this round. Donate now to be ranked #1
   q-separator(spaced)

@@ -65,48 +65,40 @@ class donations {
   }
   async get_data(reload = false) {
     let result = { calc: {} };
-    const config = await this.get_config();
+    const config = await this.get_config(reload);
     result.config = config;
 
-    const now = Math.floor(Date.now() / 1000); //current time point in sec since epoch
-    const first_round_start_sec =
-      Date.parse(config.start_time.split(".")[0] + ".000+00:00") / 1000; //timestamp of when the first round will/is start(ed)
+    const now = Math.floor(Date.now() / 1000);//current time point in sec since epoch
+    const first_round_start_sec = Date.parse(config.start_time.split(".")[0] + ".000+00:00") / 1000;//timestamp of when the first round will/is start(ed)
     const total_sec_elapsed = now - first_round_start_sec;
-    const current_round_id =
-      Math.floor(total_sec_elapsed / config.round_length_sec) + 1;
+    const current_round_id = Math.floor(total_sec_elapsed / config.round_length_sec) + 1;
 
-    const round_start_sec =
-      first_round_start_sec + config.round_length_sec * (current_round_id - 1); //start time of the current round
-    const round_sec_elapsed = now - round_start_sec; // seconds that elapsed in current round
+    const round_start_sec = first_round_start_sec + (config.round_length_sec * (current_round_id - 1));//start time of the current round
+    const round_sec_elapsed = now - round_start_sec;// seconds that elapsed in current round
 
     result.calc.now = now;
     result.calc.first_round_start_sec = first_round_start_sec;
-    result.calc.has_started = now > first_round_start_sec;
     result.calc.total_sec_elapsed = total_sec_elapsed;
     result.calc.current_round_id = current_round_id;
     result.calc.round_start_sec = round_start_sec;
     result.calc.round_sec_elapsed = round_sec_elapsed;
-    this.data = result;
+    this.data = result
     return result;
   }
   async convert_donation_to_score(donation) {
     //donation is asset "1.0000 EOS"
     const round_data = await this.get_data(false);
-    if (!round_data.calc.has_started) {
-      return 0;
-    }
-    let step = Math.floor(
-      round_data.calc.round_sec_elapsed / round_data.config.decay_step_sec
-    );
+    let step = Math.floor(round_data.calc.round_sec_elapsed / round_data.config.decay_step_sec);
     if (step > round_data.config.start_decay_after_steps) {
       step -= round_data.config.start_decay_after_steps;
-    } else {
+    }
+    else {
       //no bonus decay so we stay at step 0
       step = 0;
     }
     //assuming donation asset with precission 4
     let pv = parseFloat(donation) * 10000;
-    const bonus = pv * Math.pow(1 - round_data.config.compound_decay_pct, step);
+    const bonus = pv * Math.pow((1 - round_data.config.compound_decay_pct), step);
     let score = pv + bonus;
     console.log(score);
     return score;

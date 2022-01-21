@@ -12,6 +12,7 @@ div(style="max-width:450px;")
       style="font-size:20px; max-width:150px;"
     )
     q-btn(label="donate" flat color="teal" @click="donate()" :disable="!donateValid")
+    q-tooltip(v-if="!auth.userData.actor" color="red")  Login first
   .row.q-mt-sm
     small receiving points: {{ userPoints(pointsEstimate) || 0 }}
   .row
@@ -62,9 +63,10 @@ export default Vue.extend({
           to: this.donations.contractAccount,
           memo: "",
           quantity: Number(this.donateQuantity).toFixed(4) + " EOS",
-          pointsEstimate: 0 /////////////////////////////////////////////////////////////////////////////////////not sure why this is in the action data
         }
       };
+      console.log(action);
+
       await this.auth.doActions([action]);
       this.donations.get_leaderboard(0); //pass in a zero to match function def (1 argument)... need to make donations.js typescript with optional arg ?: number
       setTimeout(() => {
@@ -136,7 +138,7 @@ export default Vue.extend({
     //   return result
     // },
     donateValid() {
-      if (this.donateQuantity > 0) return true;
+      if (this.donateQuantity > 0 && this.auth.userData.actor) return true;
       else return false;
     }
   },

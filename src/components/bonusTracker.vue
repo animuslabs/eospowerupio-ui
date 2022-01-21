@@ -19,11 +19,11 @@ div.q-mb-md
         .col-auto.relative-position
           q-badge(v-if="donations.config" :label="donations.config.nft.bonus_silver_per_bronze_claimed" floating color="teal" style="top:-6px;").absolute-position
     .col-auto.q-ml-sm.relative-position
-      q-img(src='/icons/favicon-128x128.png' spinner-color='primary', spinner-size='82px' width="40px")
+      q-img(src='/icons/favicon-128x128.png' width="40px")
       //- q-badge(label="+1" floating color="grey-8" style="right:-13px").absolute-position
   .row.items-center.bg-white.q-pa-xs
     .col-auto.relative-position.q-mr-md
-      q-img(src='/icons/favicon-128x128.png' spinner-color='primary', spinner-size='82px' width="40px")
+      q-img(src='/icons/favicon-128x128.png' width="40px")
       q-badge(v-if="donations.config" :label="donations.config.nft.bonus_gold_per_silver_claimed - pendingGold" floating color="teal").absolute-position
     .col
       .row.items-center

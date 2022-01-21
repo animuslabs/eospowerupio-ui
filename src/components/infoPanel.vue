@@ -1,13 +1,13 @@
 <template lang='pug'>
-q-expansion-item.bg-white.q-mb-md(v-model="infoPanel" style="max-width:80vw; width:260px;")
+q-expansion-item.bg-teal-4.text-grey-9.q-mb-md(v-model="infoPanel" style="max-width:80vw; width:260px;")
   template(v-slot:header)
     .row.full-width.items-center
       .col-auto.q-mr-md
-        q-icon(color="cyan" name="info" size="20px")
+        q-icon(color="white" name="info" size="20px")
       .col-auto
         .row.full-width
-          .text-weight-light Leaderboard Mechanics
-  .row.bg-white.q-pr-lg.q-mb-md
+          strong.text-white Leaderboard Mechanics
+  .row.bg-white.q-pr-lg.q-mb-md.text-black
     ul
       li Up to {{ nftsPerRound }} Bronze NFTs are minted each week as a reward for donators in the leaderboard.
       li Your rank in the leaderboard determines the cost you pay for the NFT.
