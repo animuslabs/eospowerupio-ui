@@ -3,10 +3,10 @@ div.q-pa-md
   .row(style="width:350px; max-width:80vw;").gt-xs
     .row.full-width
       .col-auto
-        small started
+        small Started
       .col-grow
       .col-auto.self-end
-        small ending
+        small Ending
     .row.full-width
       .col-auto
         div {{ roundData.start }}
@@ -20,13 +20,17 @@ div.q-pa-md
       .col-grow
       .col-auto.self-end
         small ending: {{ roundData.end }}
+
+  .row.relative-position
+    q-linear-progress.q-mt-sm(:value="leaderboardProgress", color='teal', track-color='grey', size="10px"  )
+    .row.full-width(style="height:10px; top:8px;").absolute-top.no-wrap
+      .col-auto(v-for="el of 7" style="width:16.55%; height:5px")
+        div(style="height:10px; width:3px;").bg-white
   .row
-    q-linear-progress.q-mt-sm(:value="leaderboardProgress", color='teal', track-color='grey', size="10px" )
-  .row
-    div(style="width:350px; max-width:80vw; height:400px;").bg-white
+    q-scroll-area(style="width:350px; max-width:80vw; height:400px;").bg-white
       //- div {{ donations.mintResults }}
-      q-list
-        q-item(v-for="(user,index) of donations.leaderboard" :key="user.account")
+      q-list(v-if="leaderboard.length > 0")
+        q-item(v-for="(user,index) of leaderboard" :key="user.account")
           q-item-section(top, avatar)
             q-avatar(text-color='white', icon='img:/icons/favicon-128x128.png',).shadow-1.bg-brown-6
               q-badge(color="teal" :label="donations.mintResults[index] || 0" floating)
@@ -36,13 +40,15 @@ div.q-pa-md
           q-item-section
             q-item-label points: {{ userPoints(user.score) }}
             q-item-label minting: {{ donations.mintResults[index] || 0 }} bronze
-            //- q-item-label {{user.score}}
-            //- .col-grow
-            //-   .text-h6 {{user.score}}
+      div(v-else).relative-position(style="height:300px;")
+        p.absolute-center(style="width:250px;") No one has donated yet this round. Donate now to be ranked #1
+  .row
+    InfoPanel(style="width:350px; max-width:80vw;")
 </template>
 <script lang="ts">
-import Vue from "vue";
-import { state } from "../state/global";
+import Vue from 'vue'
+import { state } from '../state/global'
+import InfoPanel from './infoPanel.vue';
 
 /**
  * Convert value from one range to another
@@ -54,14 +60,14 @@ import { state } from "../state/global";
 function convertRange(value, oldRange, newRange) {
   return (
     ((value - oldRange.min) * (newRange.max - newRange.min)) /
-      (oldRange.max - oldRange.min) +
+    (oldRange.max - oldRange.min) +
     newRange.min
   );
 }
 
 export default Vue.extend({
   data() {
-    let leaderboard: any[] = [];
+    let leaderboard: any[] = []
     let updateInterval: any;
     return {
       auth: state.auth,
@@ -91,15 +97,12 @@ export default Vue.extend({
   },
   computed: {
     leaderboardProgress(): number {
-      if (!this.donations.data || !this.donations.config) return 0;
+      if (!this.donations.data || !this.donations.config)
+        return 0;
       const start = this.donations.data.calc.round_start_sec;
       const end = start + this.donations.config.round_length_sec;
       const current = Date.now() / 1000;
-      const result = convertRange(
-        current,
-        { min: start, max: end },
-        { min: 0, max: 1 }
-      );
+      const result = convertRange(current, { min: start, max: end }, { min: 0, max: 1 });
       console.log("progress:", result);
       return result;
     },
@@ -108,15 +111,15 @@ export default Vue.extend({
         start: new Date().toDateString(),
         end: new Date().toDateString()
       };
-      if (!this.donations.data || !this.donations.config) return data;
+      if (!this.donations.data || !this.donations.config)
+        return data;
       let start = this.donations.data.calc.round_start_sec * 1000;
       data.start = new Date(start).toDateString();
-      data.end = new Date(
-        start + this.donations.config.round_length_sec * 1000
-      ).toUTCString();
+      data.end = new Date(start + (this.donations.config.round_length_sec * 1000)).toUTCString();
       return data;
     }
-  }
-});
+  },
+  components: { InfoPanel }
+})
 </script>
 <style lang="ts"></style>

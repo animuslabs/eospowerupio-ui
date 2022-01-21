@@ -1,57 +1,39 @@
 <template lang="pug">
-div(style="max-width:350px;")
+div(style="max-width:450px;")
   .row.justify-center
     small Donate EOS to mint from the weekly leaderboard.
 
-  .row.justify-center.q-mt-md
+  .row.q-mt-md
     q-input(
       outlined
       v-model="donateQuantity",
       suffix="EOS",
       type="number"
-      style="font-size:20px; max-width:146px;"
+      style="font-size:20px; max-width:150px;"
     )
     q-btn(label="donate" flat color="teal" @click="donate()" :disable="!donateValid")
+  .row.q-mt-sm
+    small receiving points: {{ userPoints(pointsEstimate) || 0 }}
   .row
-    .col-2
-    .col
-      small receiving points: {{ userPoints(pointsEstimate) || 0 }}
-  .row
-    .col-2
     small minimum donation: {{ config.minimum_donation || 0 }}
   .row
-    .col-2
+
     small current points rate: 1 EOS = {{ pointsRate }} points
-  .row
-    .col-2
+  .row.q-mb-md
     small points rate decay per day {{ pointsRateModifier }} %
-  .row.q-ma-md
-    q-expansion-item.bg-white.q-mb-md(v-model="infoPanel" style="max-width:100vw; width:300px;")
-      template(v-slot:header)
-        .row.full-width.items-center
-          .col-auto.q-mr-md
-            q-icon(color="cyan" name="info" size="20px")
-          .col-auto
-            .row.full-width
-              .text-weight-light Leaderboard Details
-            //- .row.full-width.justify-center.q-mb-sm
-            //-   small Important information
-      .row.bg-white.q-pa-lg.q-mb-md
-        p Up to 20 Bronze NFTs are minted each week as a reward for donators in the leaderboard.
-        p Your rank in the leaderboard determines the cost you pay for the NFT.
-        p #1st place cost: 1EOS per NFT. 2nd place cost: 1.1 EOS per NFT.
-        p At the end of each week NFTs are minted for users based on the cost for that rank and their contribution.
-        p The total number of minted NFTs and distribution among the leaderboard will vary based on contributions that week.
-        p Your rank on the leaderboard is based on points instead of total donation.
-        p Each week the points you receive per EOS donation decreases over time. This means users who donate early in the week have the advantage.
-        p It's possible to donate less than another user but outrank them in the leaderboard based on the time donations were made.
+  q-separator(spaced)
+  .row.q-mt-md
+    BonusTracker.full-width
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import { state } from "../state/global";
+import infoPanel from './infoPanel.vue';
+import BonusTracker from './bonusTracker.vue';
 // import * as nfts from "../state/nfts";
 export default Vue.extend({
+  components: { infoPanel, BonusTracker },
   data() {
     // let donationData: any;
     return {

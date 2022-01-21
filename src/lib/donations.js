@@ -5,11 +5,35 @@ class donations {
     this.contractAccount = contractAccount;
     this.config = null; //cache config during lifespan of this object.
   }
-  contractAccount = "";
-  data;
-  leaderboard = [];
-  mintResults = [];
-  config;
+  contractAccount = ''
+  data
+  leaderboard = []
+  mintResults = []
+  config
+  async get_account_minted(accountName) {
+    let res = await this.api.rpc.get_table_rows({
+      json: true,
+      code: this.contractAccount,
+      scope: this.contractAccount,
+      lower_bound: accountName,
+      upper_bound: accountName,
+      table: "claimed",
+      limit: 1
+    });
+    if (res && res.rows.length) {
+
+      return res.rows[0];
+    }
+    else {
+      console.log(accountName, ' doesn\'t have a minted row');
+      return {
+        bronze_unclaimed: 0,
+        bronze_claimed: 0,
+        silver_claimed: 0,
+        gold_claimed: 0
+      };
+    }
+  }
   async get_account_nfts(accountName) {
     const allNFTs = await queries.getFullTable({
       code: "atomicassets",

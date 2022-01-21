@@ -2,43 +2,28 @@
 div
   .row.justify-center.full-width.q-mt-xs
     .col-auto
-      q-card(bordered flat style="width:140px").q-ma-sm
-        .row.justify-center.q-mt-sm.q-mr-md.q-ml-md.q-mb-sm
-          div Bronze Balance
-        .row.justify-center
-          .text-h6 {{ printBalances.bronze }}
-        .row.justify-center
-          q-btn(:label="'Burn ' + bronzeToSilver"  :ripple="false" color="orange-9" unelevated @click="burnBronze()" :disable="!validBurnBronze").full-width.no-border-radius
-        .row.justify-center.q-mb-sm.q-mr-md.q-ml-md.q-mt-sm
-          div Mint 1 Silver
+      mintCard(label1="Bronze" label2="Silver" :printBalance="printBalances.bronze" :burnQuantity="bronzeToSilver" :valid="validBurnBronze" @mint="burnBronze()")
     .col-auto
-      q-card(bordered flat style="width:140px").q-ma-sm
-        .row.justify-center.q-mt-sm.q-mr-md.q-ml-md.q-mb-sm
-          div Silver Balance
-        .row.justify-center
-          .text-h6 {{ printBalances.silver }}
-        .row.justify-center
-          q-btn(:label="'Burn ' + silverToGold" :ripple="false" color="orange-9" unelevated @click="burnSilver()" :disable="!validBurnSilver").full-width.no-border-radius
-        .row.justify-center.q-mb-sm.q-mr-md.q-ml-md.q-mt-sm
-          div Mint 1 Gold
-  .row.full-width.q-pa-sm.justify-center
-    q-card(bordered flat style="width:140px;").bg-amber-7.text-black.q-pa-sm
+      mintCard(label1="Silver" label2="Gold" :printBalance="printBalances.silver" :burnQuantity="silverToGold" :valid="validBurnSilver" @mint="burnSilver()")
+  .row.full-width.q-ma-sm.justify-center
+    q-card(bordered flat style="width:120px;").text-black.q-pa-sm
       .row.items-center.justify-center
         .col-auto
-          div Gold Balance
+          small Gold Balance
         .col-2
         .col-auto
           div {{ printBalances.gold }}
-    .col-grow
-    q-btn(label="atomic hub" target="_blank" style="width:140px; background-color: #1a203c; color:rgb(234, 146, 62);" type="a" :href="atomicLink" icon="visibility" size="sm" flat color="rgb(234, 146, 62)")
+    q-btn(label="atomic hub" target="_blank" style="width:120px; color:rgb(234, 146, 62);" type="a" :href="atomicLink" icon="visibility" size="xs" color="#1a203c" outline).q-ml-md
 
 
 </template>
 <script lang="ts">
 import Vue from 'vue'
+import mintCard from './mintCard.vue'
 import { state } from '../state/global'
 let interval: any = null
 export default Vue.extend({
+  components: { mintCard },
   data() {
     let balances: any = {}
     return {
@@ -89,6 +74,7 @@ export default Vue.extend({
   },
   computed: {
     atomicLink(): string {
+      if (!this.donations.config) return ''
       return `https://eos.atomichub.io/profile/${this.auth.userData.actor}?collection_name=${this.donations.config.nft.collection_name}&order=desc&sort=transferred`
     },
     validBurnBronze(): boolean {

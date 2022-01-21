@@ -1,26 +1,23 @@
 <template lang="pug">
 div
-  .q-pa-sm
+  .q-pt-sm
     .row.q-mt-md.justify-center
-      .col-auto
+      .col-auto.q-pr-md
         .row.justify-center
           h6.no-margin.text-weight-light.text-grey-9 Mint NFTs
         .row
           donateInput
-        .row.items-align.justify-center
-          .col-auto
-            .text-h4(style="margin-top:11px") 🔥
-          .col-auto
-            .row.justify-center
-              h6.no-margin.text-weight-light.text-grey-9 Higher Rarities
-            .row.justify-center
-              small burn NFTs to mint higher rarities
-        .row.justify-center
+        q-separator(spaced)
+        .row.q-mt-md
+          div Burn to Mint
+        .row
+          small Burn NFTs to mint higher rarities
+        .row
           burnNFTs
       .col-auto.gt-xs
-        div(style="height:100%; width:1px;").bg-grey-3
+        div(style="height:100%; width:1px;").bg-grey-4
       .col-auto
-        .row.q-lt-lg(style="height:20px;")
+        .row.lt-sm(style="height:20px;")
         .row.justify-center
           h6.no-margin.text-weight-light.text-grey-9 Weekly Leaderboard
         .row.justify-center
