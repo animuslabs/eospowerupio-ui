@@ -20,7 +20,7 @@ div(style="max-width:450px;")
 
     small current points rate: 1 EOS = {{ pointsRate }} points
   .row.q-mb-md
-    small points rate decay per day {{ pointsRateModifier }} %
+    small points rate decreases {{ pointsRateModifier }} % each day
   q-separator(spaced)
   .row.q-mt-md
     BonusTracker.full-width
@@ -141,7 +141,7 @@ export default Vue.extend({
     }
   },
   watch: {
-    donateQuantity: function(newV: number, oldV: number): void {
+    donateQuantity: function (newV: number, oldV: number): void {
       if (newV && newV != oldV) {
         this.pointsEstimate = this.convert_donation_to_score(newV);
       }

@@ -29,7 +29,7 @@ div.q-pa-md
   .row
     q-scroll-area(style="width:350px; max-width:80vw; height:400px;").bg-white
       //- div {{ donations.mintResults }}
-      q-list(v-if="donations.leaderboard.length > 0")
+      q-list.q-mt-md(v-if="donations.leaderboard.length > 0")
         q-item(v-for="(user,index) of donations.leaderboard" :key="user.account")
           q-item-section(top, avatar)
             q-avatar(text-color='white', icon='img:/icons/favicon-128x128.png',).shadow-1.bg-brown-6
@@ -42,6 +42,7 @@ div.q-pa-md
             q-item-label minting: {{ donations.mintResults[index] || 0 }} bronze
       div(v-else).relative-position(style="height:300px;")
         p.absolute-center(style="width:250px;") No one has donated yet this round. Donate now to be ranked #1
+  q-separator(spaced)
   .row
     InfoPanel(style="width:350px; max-width:80vw;")
 </template>
